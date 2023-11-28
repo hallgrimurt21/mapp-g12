@@ -1,11 +1,7 @@
 import "react-native-gesture-handler"
 import React from "react"
-import AppContainer from "./src/routes"
-import moment from "moment"
-moment.locale("en")
+import HomeScreen from "./src/views/Main"
 
 export default function App () {
-    return (
-        <AppContainer />
-    )
+    return <HomeScreen />
 }
