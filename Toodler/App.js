@@ -6,6 +6,9 @@ export default function App() {
     return (
         <View style={styles.container}>
             <Text>Hello world!</Text>
+            <Text>HI GLOBE</Text>
+            <Text>HI GLOBE</Text>
+            <Button title="Press me" onPress={() => alert("Pressed!")} />
             <StatusBar style="auto" />
         </View>
     )

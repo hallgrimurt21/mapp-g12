@@ -11,7 +11,8 @@ module.exports = {
             },
             files: [".eslintrc.{js,cjs}"],
             parserOptions: {
-                sourceType: "script",
+                ecmaVersion: 2022,
+                sourceType: "module",
             },
         },
     ],
