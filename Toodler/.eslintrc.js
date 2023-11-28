@@ -20,7 +20,7 @@ module.exports = {
         ecmaVersion: "latest",
         sourceType: "module",
     },
-    plugins: ["react"],
+    plugins: ["react", "prettier"],
     rules: {
         indent: ["error", 4],
         quotes: ["error", "double"],

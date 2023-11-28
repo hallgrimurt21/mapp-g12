@@ -1,15 +1,21 @@
 import { StatusBar } from "expo-status-bar"
 import React from "react"
-import { StyleSheet, View } from "react-native"
-import Card from "./src/components/Card"
+import { StyleSheet, View, Text } from "react-native"
+import Card from "./src/components/card/Card"
 import data from "./src/resources/data.json"
 
 export default function App() {
-    const lisa = ["hello world", "joey is home"]
     return (
         <View style={styles.container}>
-            {data.tasks.map((text, index) => (
-                <Card key={index}>{text.name}</Card>
+            {data.tasks.map((task, index) => (
+                <Card
+                    name={task.name}
+                    description={task.description}
+                    key={index}
+                    id={task.id}
+                    boardId={task.boardId}
+                    isFinished={task.isFinished}
+                />
             ))}
             <StatusBar style="auto" />
         </View>
@@ -19,7 +25,7 @@ export default function App() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "skyblue",
+        backgroundColor: "#FEFCFF",
         alignItems: "center",
         justifyContent: "center",
     },
