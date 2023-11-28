@@ -9,16 +9,24 @@
         "web": "expo start --web"
     },
     "dependencies": {
+        "@expo/webpack-config": "^19.0.0",
+        "@fontsource/roboto": "^5.0.8",
+        "@mui/icons-material": "^5.14.18",
+        "@mui/material": "^5.14.18",
+        "@mui/styled-engine-sc": "^6.0.0-alpha.6",
+        "@react-native-community/checkbox": "^0.5.16",
         "expo": "~49.0.15",
         "expo-status-bar": "~1.6.0",
         "react": "18.2.0",
-        "react-native": "0.72.6",
         "react-dom": "18.2.0",
+        "react-native": "0.72.6",
         "react-native-web": "~0.19.6",
-        "@expo/webpack-config": "^19.0.0"
+        "styled-components": "^6.1.1"
     },
     "devDependencies": {
-        "@babel/core": "^7.20.0",
+        "@babel/core": "^7.23.3",
+        "@babel/preset-env": "^7.23.3",
+        "@babel/preset-react": "^7.23.3",
         "eslint": "^8.54.0",
         "eslint-config-standard": "^17.1.0",
         "eslint-plugin-import": "^2.29.0",
@@ -26,6 +34,5 @@
         "eslint-plugin-promise": "^6.1.1",
         "eslint-plugin-react": "^7.33.2"
     },
-    "type": "module",
     "private": true
 }

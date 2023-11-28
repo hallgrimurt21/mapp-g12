@@ -1,14 +1,16 @@
 import { StatusBar } from "expo-status-bar"
-import { StyleSheet, Text, View } from "react-native"
 import React from "react"
+import { StyleSheet, View } from "react-native"
+import Card from "./src/components/Card"
+import data from "./src/resources/data.json"
 
 export default function App() {
+    const lisa = ["hello world", "joey is home"]
     return (
         <View style={styles.container}>
-            <Text>Hello world!</Text>
-            <Text>HI GLOBE</Text>
-            <Text>HI GLOBE</Text>
-            <Button title="Press me" onPress={() => alert("Pressed!")} />
+            {data.tasks.map((text, index) => (
+                <Card key={index}>{text.name}</Card>
+            ))}
             <StatusBar style="auto" />
         </View>
     )
@@ -17,7 +19,7 @@ export default function App() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
+        backgroundColor: "coral",
         alignItems: "center",
         justifyContent: "center",
     },
