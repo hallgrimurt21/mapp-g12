@@ -11,7 +11,8 @@ module.exports = {
             },
             files: [".eslintrc.{js,cjs}"],
             parserOptions: {
-                sourceType: "script",
+                ecmaVersion: 2022,
+                sourceType: "module",
             },
         },
     ],
@@ -19,7 +20,7 @@ module.exports = {
         ecmaVersion: "latest",
         sourceType: "module",
     },
-    plugins: ["react"],
+    plugins: ["react", "prettier"],
     rules: {
         indent: ["error", 4],
         quotes: ["error", "double"],
