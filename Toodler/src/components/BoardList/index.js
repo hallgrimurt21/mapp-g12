@@ -1,13 +1,15 @@
-import React, {useState} from "react"
+import React, { useState } from "react"
 import styles from "./styles"
 import { useNavigation } from "@react-navigation/native"
 import data from "../../resources/data.json"
 import { Text, ScrollView, TouchableOpacity } from "react-native"
 import EditModal from "../EditModal"
+import AddModal from "../AddModal"
 
 const BoardList = () => {
     const { navigate } = useNavigation()
-    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+    const [isAddModalOpen, setIsAddModalOpen] = useState(false)
     return (
         <ScrollView style={styles.container} >
             {/* list of boards */}
@@ -18,12 +20,15 @@ const BoardList = () => {
             ))}
 
             {/* "+" button at the end */}
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => { setIsAddModalOpen(true) }}>
                 <Text style={styles.item}>+</Text>
             </TouchableOpacity>
             <EditModal
                 isOpen={isEditModalOpen}
                 closeModal={() => setIsEditModalOpen(false)} />
+            <AddModal
+                isOpen={isAddModalOpen}
+                closeModal={() => setIsAddModalOpen(false)} />
         </ScrollView>
     )
 }
