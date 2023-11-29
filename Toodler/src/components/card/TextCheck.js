@@ -2,11 +2,12 @@ import { StyleSheet, View, Text } from "react-native"
 import React, { useState } from "react"
 import Checkbox from "expo-checkbox"
 
-export default function TextCheck({ name, isFin }) {
-    const [isChecked, setChecked] = useState(isFin)
+export default function TextCheck({ info }) {
+    const [isChecked, setChecked] = useState(info.isFinished)
+
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>{name}</Text>
+            <Text style={styles.text}>{info.name}</Text>
             <Checkbox
                 style={styles.checkbox}
                 value={isChecked}

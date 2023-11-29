@@ -1,11 +1,11 @@
 import React, { useState } from "react"
 import { StyleSheet, View, Text, Pressable } from "react-native"
 
-export default function DescButton({ text }) {
+export default function DescButton({ info }) {
     const [isPressed, setIsPressed] = useState(false)
     return (
         <View style={styles.container}>
-            <Text style={styles.description}>{text}</Text>
+            <Text style={styles.description}>{info.description}</Text>
             <Pressable
                 style={[styles.button, isPressed && styles.buttonPressed]}
                 onPressIn={() => setIsPressed(true)}

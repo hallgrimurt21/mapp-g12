@@ -20,12 +20,8 @@ export default function Card({ name, description, id, listId, isFinished }) {
             style={styles.papa}
         >
             <View style={styles.innerContainer}>
-                <TextCheck
-                    style={styles.texCe}
-                    name={name}
-                    isFin={isFinished}
-                />
-                <DescButton style={styles.descButt} text={description} />
+                <TextCheck style={styles.texCe} info={cardData} />
+                <DescButton style={styles.descButt} info={cardData} />
             </View>
         </LinearGradient>
     )
