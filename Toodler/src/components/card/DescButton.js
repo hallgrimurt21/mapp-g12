@@ -45,4 +45,8 @@ const styles = StyleSheet.create({
     buttonPressed: {
         backgroundColor: "lightgrey",
     },
+    buttonText: {
+        fontSize: 12,
+        color: "black",
+    },
 })

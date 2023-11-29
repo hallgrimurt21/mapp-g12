@@ -1,7 +1,7 @@
 import React from "react"
 import { StyleSheet, View, Text } from "react-native"
 
-export default function List (props) {
+export default function List(props) {
     return (
         <View style={styles.container}>
             <View style={styles.row}>
@@ -25,8 +25,6 @@ const styles = StyleSheet.create({
         padding: 10,
         marginBottom: 10,
         boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
-        fontFamily: "Roboto",
-        
     },
     text: {
         color: "black",
