@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
         textShadowColor: "white",
         flexDirection: "row",
         alignContent: "center",
-        alignSelf: "center",
+        alignSelf: "left",
+        paddingLeft: 5,
         paddingBottom: 5,
     },
         tasks: {
