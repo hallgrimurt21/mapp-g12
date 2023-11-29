@@ -17,11 +17,15 @@ export default function List({ list }) {
                 shadows.smallShadow,
             ]}
         >
-            <Text style={styles.text}>{list.name}</Text>
+            <View style={[styles.titler, shadows.smallUnder]}>
+                <Text style={styles.text}>{list.name}</Text>
+            </View>
             {cards.map((card) => (
                 <Card key={card.id} info={card} />
             ))}
-            <Button style={styles.adder} title="Add Task" />
+            <View style={styles.adder}>
+                <Button title="Add Task" />
+            </View>
         </View>
     )
 }
@@ -46,9 +50,18 @@ const styles = StyleSheet.create({
         alignContent: "center",
         padding: 5,
     },
-
     adder: {
         backgroundColor: white,
-        color: white,
+        height: 40,
+        marginTop: 5,
+    },
+    titler: {
+        backgroundColor: white,
+        alignSelf: "flex-start",
+        marginBottom: 3,
+        borderRadius: 2,
+        borderWidth: 1,
+        borderTopWidth: 0,
+        borderLeftWidth: 0,
     },
 })
