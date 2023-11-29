@@ -22,7 +22,6 @@ const styles = StyleSheet.create({
     },
     texas: {
         fontSize: 20,
-        alignSelf: "center",
     },
     lister: {
         width: "100%",
