@@ -1,35 +1,31 @@
 import React from "react"
-import { StyleSheet, View, Text } from "react-native"
+import { StyleSheet, View, Text, FlatList } from "react-native"
+import data from "../resources/data.json"
+import Card from "./card/Card"
 
+export default function List({ list }) {
+    const cards = data.tasks.filter((task) => task.listId === list.id)
 
-export default function List({ name, children }) {
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>{name}</Text>
-            <View style={styles.tasks}>
-                <Text style={styles.text}>{children}</Text>
-            </View>
+            <Text style={styles.text}>{list.name}</Text>
+            {cards.map((card) => (
+                <Card key={card.id} info={card} />
+            ))}
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        height: "fit-content",
-        width: "fit-content",
-        backgroundColor: "tan",
-        alignItems: "center",
-        justifyContent: "space-between",
-        flexDirection: "column",
         borderColor: "black", // color of the border
         borderWidth: 1, // width of the border
         borderRadius: 5,
-        padding: 10,
         margin: 10,
-    },
-    title: {
-        fontSize: 40,
-        fontWeight: 'bold',
+        padding: 5,
+        boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
+        alignContent: "center",
+        alignSelf: "flex-start",
     },
     text: {
         color: "black",
@@ -37,21 +33,10 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         textShadowRadius: 10,
         textShadowColor: "white",
-        marginRight: 10,
-        flexDirection: "column",
-    },
-    check: {
-        color: "black",
-        fontSize: 100,
-        fontWeight: "lighter",
-    },
-    description: {
-        color: "grey",
-        fontSize: 15,
-    },
-    row: {
         flexDirection: "row",
-        alignItems: "center",
+        alignContent: "center",
+        alignSelf: "center",
+        paddingBottom: 5,
     },
         tasks: {
         flexDirection: "column",

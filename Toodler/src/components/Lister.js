@@ -1,34 +1,32 @@
 import React from "react"
-import { FlatList, Text, View } from "react-native"
+import { FlatList, Text, View, StyleSheet, ScrollView } from "react-native"
 import data from "../resources/data.json"
 import Card from "./card/Card"
 import List from "./List"
 
 export default function Lister({ board }) {
+    const lists = data.lists.filter((list) => list.boardId === board.id)
     return (
-        <View>
+        <ScrollView style={styles.lister} horizontal={true}>
             <Text>{board.name}</Text>
-            <FlatList 
-            horizontal
-                data={data.lists.filter((list) => list.boardId === board.id)}
-                keyExtractor={(list) => list.id.toString()}
-                renderItem={({ item: list }) => (
-                    <List>
-                        <Text>{list.name}</Text>
-                        <FlatList
-                            data={data.tasks.filter(
-                                (task) => task.listId === list.id,
-                            )}
-                            keyExtractor={(task) => task.id.toString()}
-                            renderItem={({ item: task }) => (
-                                <Card info={task}></Card>
-                            )}
-                            style={{ height: 100 }}
-                        />
-                    </List>
-                )}
-                
-            />
-        </View>
+            {lists.map((list) => (
+                <List key={list.id} list={list} />
+            ))}
+        </ScrollView>
     )
 }
+
+const styles = StyleSheet.create({
+    carder: {
+        flexDirection: "column",
+    },
+    texas: {
+        fontSize: 20,
+        alignSelf: "center",
+    },
+    lister: {
+        width: "100%",
+        marginHorizontal: 20,
+        flexDirection: "row",
+    },
+})
