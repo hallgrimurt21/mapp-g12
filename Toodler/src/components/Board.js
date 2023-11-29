@@ -14,7 +14,7 @@ export default function Board(props) {
 const styles = StyleSheet.create({
     container: {
         height: 800,
-        width: 600,
+        width: 500,
         backgroundColor: "green",
         alignItems: "center",
         justifyContent: "space-between",
