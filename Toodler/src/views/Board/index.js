@@ -10,21 +10,22 @@ import BoardSelect from "../../components/BoardSelect"
 import { navajo, smoke } from "../../styles/colors"
 import { deviceWidth } from "../../styles/deviceWidth"
 import { Image } from "expo-image"
+import styles from "./styles"
 
-function Board({ route,  navigation: { navigate } }) {
-    const {id} = route.params
+function Board({ route, navigation: { navigate } }) {
+    const { id } = route.params
     return (
         <View style={styles.viewer}>
             <BoardSelect ider={id} />
             <TouchableOpacity
-                style={styles.button}
+                style={styles.button2}
                 onPress={() => {
                     navigate("Main")
                 }}
             >
                 <Image
                     source={require("../../components/Images/Hamburger.png")}
-                    style={styles.buttonText}
+                    style={styles.buttonText2}
                 />
             </TouchableOpacity>
         </View>
@@ -32,26 +33,3 @@ function Board({ route,  navigation: { navigate } }) {
 }
 
 export default Board
-
-const styles = StyleSheet.create({
-    viewer: {
-        backgroundColor: smoke,
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "white",
-    },
-
-    buttonText: {
-        width: 30,
-        height: 30,
-        alignSelf: "center",
-    },
-    button: {
-        height: 50,
-        width: deviceWidth * 1,
-        borderTopColor: "black",
-        borderTopWidth: 1,
-        justifyContent: "center",
-    },
-})

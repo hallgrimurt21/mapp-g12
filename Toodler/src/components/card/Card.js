@@ -45,4 +45,13 @@ const styles = StyleSheet.create({
         paddingRight: 7,
         paddingTop: 7,
     },
+
+    checkboxContainer: {
+        borderWidth: 1,
+        borderColor: "black",
+        borderRadius: 5,
+    },
+    checkboxText: {
+        marginLeft: 8,
+    },
 })

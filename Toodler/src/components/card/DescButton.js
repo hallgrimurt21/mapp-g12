@@ -19,15 +19,14 @@ export default function DescButton({ info }) {
 
 const styles = StyleSheet.create({
     button: {
-        width: 22,
-        height: 22,
+        width: 25,
+        height: 25,
         fontSize: 2,
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 2,
-        // borderColor: "lightgrey",
-        // borderWidth: 1,
-        marginRight: 4,
+        marginTop: 5,
+        justifyContent: "center",
     },
     description: {
         color: "grey",
@@ -46,7 +45,9 @@ const styles = StyleSheet.create({
         backgroundColor: "lightgrey",
     },
     buttonText: {
-        fontSize: 12,
+        fontSize: 22,
         color: "black",
+        justifyContent: "center",
+        marginBottom: 10,
     },
 })

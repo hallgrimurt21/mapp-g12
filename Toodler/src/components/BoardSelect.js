@@ -12,6 +12,7 @@ export default function BoardSelect({ ider }) {
 
     return (
         <>
+            <Text style={styles.empty}> </Text>
             <Text style={styles.title}>{board.name}</Text>
             <Lister board={board} />
         </>
@@ -34,5 +35,8 @@ const styles = StyleSheet.create({
         alignSelf: "flex-start",
         borderColor: "black",
         borderWidth: 1,
+    },
+    empty: {
+        height: 30,
     },
 })
