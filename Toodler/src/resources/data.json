@@ -185,6 +185,52 @@
             "description": "Gotta clog that bowl...",
             "isFinished": false,
             "listId": 3
+        },
+        {
+            "id": 18,
+            "name": "go into exile on saint helena",
+            "description": "A picture being Napoleon!",
+            "isFinished": false,
+            "listId": 7
+        }
+        ,
+        {
+            "id": 19,
+            "name": "Kiss George clooney",
+            "description": "on the NOSE!",
+            "isFinished": false,
+            "listId": 7
+        }
+        ,
+        {
+            "id": 20,
+            "name": "fart in a silent temple",
+            "description": "and blame it on the monk",
+            "isFinished": true,
+            "listId": 7
+        }
+        ,
+        {
+            "id": 21,
+            "name": "get chased out of a temple by a monk",
+            "description": "and blame it on the fart",
+            "isFinished": true,
+            "listId": 7
+        }
+        ,
+        {
+            "id": 22,
+            "name": "Bite mike tyson's ear",
+            "description": "Mom says you need to clean the toilet!",
+            "isFinished": true,
+            "listId": 7
+        },
+        {
+            "id": 23,
+            "name": "Devour the pope",
+            "description": "he tastes like children",
+            "isFinished": true,
+            "listId": 2
         }
     ]
 }

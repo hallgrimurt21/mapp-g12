@@ -1,8 +1,8 @@
 import React from "react"
-import { StyleSheet, View, Text, Button } from "react-native"
+import { StyleSheet, View, Text, Button, ScrollView } from "react-native"
 import data from "../resources/data.json"
 import Card from "./card/Card"
-import { deviceWidth } from "../styles/deviceWidth"
+import { deviceWidth, deviceHeight } from "../styles/deviceWidth"
 import { shadows } from "../styles/shadows"
 import { white } from "../styles/colors"
 import { BlurView } from "expo-blur"
@@ -23,12 +23,15 @@ export default function List({ list }) {
                 <View style={[styles.titler]}>
                     <Text style={styles.text}>{list.name}</Text>
                 </View>
-                {cards.map((card) => (
-                    <Card key={card.id} info={card} />
-                ))}
-                <View style={styles.adder}>
-                    <Button style={styles.butRad} title="Add Task" />
-                </View>
+                <ScrollView style={styles.carder}>
+                    {cards.map((card) => (
+                        <Card key={card.id} info={card} />
+                    ))}
+
+                    <View style={styles.adder}>
+                        <Button style={styles.butRad} title="Add Task" />
+                    </View>
+                </ScrollView>
             </BlurView>
         </View>
     )
@@ -70,5 +73,9 @@ const styles = StyleSheet.create({
     },
     butRad: {
         borderRadius: 5,
+    },
+    carder: {
+        flexDirection: "column",
+        maxHeight: deviceHeight * 0.68,
     },
 })
