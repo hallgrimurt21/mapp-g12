@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         height: 76,
         margin: 1, // Adjust this value to change the width of the border
-        borderRadius: 1,
+        borderRadius: 0,
         paddingBottom: 0,
         paddingLeft: 7,
         paddingRight: 7,
