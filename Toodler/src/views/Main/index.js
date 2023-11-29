@@ -1,13 +1,13 @@
 import React from "react"
-import { View, Text, Image } from "react-native"
-import logo from "../../resources/logo.png"
-import styles from "./styles"
+import { View } from "react-native"
+import HomeScreen from "../../components/Homescreen"
 
-const Main = () => (
-    <View style={styles.container}>
-        <Image source={logo} style={styles.logo} />
-        <Text style={styles.paragraph}>Board</Text>
-    </View>
-)
+function Main () {
+    return (
+        <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+            <HomeScreen />
+        </View>
+    )
+}
 
 export default Main
