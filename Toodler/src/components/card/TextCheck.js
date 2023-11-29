@@ -9,10 +9,17 @@ export default function TextCheck({ info }) {
         <View style={styles.container}>
             <Text style={styles.text}>{info.name}</Text>
             <Checkbox
-                style={styles.checkbox}
+                style={{
+                    width: 25,
+                    height: 25,
+                    margin: 1,
+                    padding: 1,
+                }}
                 value={isChecked}
                 onValueChange={setChecked}
-                color={"black"}
+                onPress={() => setIsChecked(!isChecked)}
+                textStyle={{ marginLeft: 8 }}
+                size={10} // Adjust the size to control the border width indirectly
             />
         </View>
     )

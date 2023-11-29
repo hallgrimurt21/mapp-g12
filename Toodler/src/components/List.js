@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
         textShadowColor: "white",
         flexDirection: "row",
         alignContent: "center",
-        alignSelf: "left",
         padding: 5,
     },
 })

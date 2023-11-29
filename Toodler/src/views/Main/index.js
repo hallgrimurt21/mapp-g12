@@ -11,6 +11,7 @@ import BoardSelect from "../../components/BoardSelect"
 import { navajo, smoke } from "../../styles/colors"
 import { deviceWidth } from "../../styles/deviceWidth"
 import { Image } from "expo-image"
+import hamburgerImage from "../../components/Images/Hamburger.png"
 
 function Main({ navigation: { navigate } }) {
     return (
@@ -22,10 +23,7 @@ function Main({ navigation: { navigate } }) {
                     navigate("Board")
                 }}
             >
-                <Image
-                    source={require("../../components/Images/Hamburger.png")}
-                    style={styles.buttonText}
-                />
+                <Image source={hamburgerImage} style={styles.buttonText} />
             </TouchableOpacity>
         </View>
     )
