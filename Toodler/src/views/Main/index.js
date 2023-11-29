@@ -1,6 +1,5 @@
 import React from "react"
 import { View, TouchableOpacity, Text } from "react-native"
-import HomeScreen from "../../components/Homescreen"
 import BoardSelect from "../../components/BoardSelect"
 
 function Main({ navigation: { navigate } }) {
