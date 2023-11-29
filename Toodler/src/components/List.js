@@ -1,29 +1,34 @@
 import React from "react"
-import { StyleSheet, View, Text } from "react-native"
+import { StyleSheet, View, Text, Dimensions, Button } from "react-native"
+import data from "../resources/data.json"
+import Card from "./card/Card"
+import { handleAddTask } from "../views/Main/index"
 
-export default function List(props) {
+export default function List({ list }) {
+    const cards = data.tasks.filter((task) => task.listId === list.id)
+
     return (
-        <View style={styles.container}>
-            <View style={styles.row}>
-                <Text style={styles.text}>{props.children}</Text>
-            </View>
-        </View>
+        <><View style={styles.container}>
+            <Text style={styles.text}>{list.name}</Text>
+            {cards.map((card) => (
+                <Card key={card.id} info={card} />
+            ))}
+            <Button title="Add Task" onPress={handleAddTask} />
+        </View></>
     )
 }
 
+const deviceWidth = Dimensions.get("window").width
+
 const styles = StyleSheet.create({
     container: {
-        height: 300,
-        width: 450,
-        backgroundColor: "yellow",
-        alignItems: "center",
-        justifyContent: "space-between",
-        flexDirection: "column",
+        alignSelf: "flex",
+        width: deviceWidth * 0.95, // 95% of the device width
+        maxWidth: 450, // max width of 500
         borderColor: "black", // color of the border
         borderWidth: 1, // width of the border
         borderRadius: 5,
-        padding: 10,
-        marginBottom: 10,
+        margin: 10,
         boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
     },
     text: {
@@ -32,20 +37,15 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         textShadowRadius: 10,
         textShadowColor: "white",
-        marginRight: 10,
-        flexDirection: "column",
-    },
-    check: {
-        color: "black",
-        fontSize: 100,
-        fontWeight: "lighter",
-    },
-    description: {
-        color: "grey",
-        fontSize: 15,
-    },
-    row: {
         flexDirection: "row",
-        alignItems: "center",
+        alignContent: "center",
+        alignSelf: "left",
+        padding: 5,
+    },
+    newList: {
+        flexDirection: "row",
+        alignSelf: "center",
+        alignContent: "center",
+        paddingBottom: 5,
     },
 })

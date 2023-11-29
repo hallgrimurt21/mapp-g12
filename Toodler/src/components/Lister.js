@@ -1,33 +1,51 @@
 import React from "react"
-import { FlatList, Text, View } from "react-native"
+import { FlatList, Text, View, StyleSheet, ScrollView, Button } from "react-native"
 import data from "../resources/data.json"
 import Card from "./card/Card"
 import List from "./List"
+import { handleAddTask } from "../views/Main/index"
 
 export default function Lister({ board }) {
+    const lists = data.lists.filter((list) => list.boardId === board.id)
     return (
-        <View>
-            <Text>{board.name}</Text>
-            <FlatList
-                data={data.lists.filter((list) => list.boardId === board.id)}
-                keyExtractor={(list) => list.id.toString()}
-                renderItem={({ item: list }) => (
-                    <List>
-                        <Text>{list.name}</Text>
-                        <FlatList
-                            data={data.tasks.filter(
-                                (task) => task.listId === list.id,
-                            )}
-                            keyExtractor={(task) => task.id.toString()}
-                            renderItem={({ item: task }) => (
-                                <Card info={task}></Card>
-                            )}
-                            style={{ height: 100 }}
-                        />
-                    </List>
-                )}
-                style={{ height: 200 }}
-            />
-        </View>
+        <><><Text style={styles.title}>{board.name}</Text>
+            <ScrollView style={styles.lister} horizontal={true} pagingEnabled>
+
+                {lists.map((list) => (
+                    <List key={list.id} list={list} />
+                ))}
+            </ScrollView></><View style={styles.newList}>
+                <Button title="New List" onPress={handleAddTask} />
+            </View></>
     )
 }
+
+const styles = StyleSheet.create({
+    carder: {
+        flexDirection: "column",
+    },
+    texas: {
+        fontSize: 20,
+    },
+    lister: {
+        width: "100%",
+        marginHorizontal: 20,
+        flexDirection: "row",
+    },
+    title: {
+        backgroundColor: "gold",
+        fontSize: 28,
+        alignSelf: "stretch" ,
+        fontWeight: "bold",
+        color: "navy",
+    },
+    newList: {
+        backgroundColor: "gold",
+        border: "2px solid black",
+        borderColor: "black", // color of the border
+        flexDirection: "column",
+        alignSelf: "stretch",
+        alignContent: "center",
+        paddingBottom: 50,       
+    },
+})

@@ -14,7 +14,7 @@ function Main({ navigation: { navigate } }) {
             >
                 <Text>board</Text>
             </TouchableOpacity>
-            <BoardSelect />
+            <BoardSelect ider={2} />
         </View>
     )
 }

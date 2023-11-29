@@ -6,7 +6,7 @@ import Board from "../components/Board" // Add Board here
 import List from "../components/List" // Add List here
 
 function HomeScreen() {
-    const boardId = 2; // replace with the ID of the board you want to display
+    const boardId = 1; // replace with the ID of the board you want to display
   
     const board = data.boards.find((board) => board.id === boardId);
   
