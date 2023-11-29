@@ -1,22 +1,13 @@
 import React from "react"
-import { View, TouchableOpacity, Text } from "react-native"
-import BoardSelect from "../../components/BoardSelect"
+import { View, Text } from "react-native"
+import styles from "./styles"
+import BoardList from "../../components/BoardList"
 
-function Main({ navigation: { navigate } }) {
-    return (
-        <View
-            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-        >
-            <TouchableOpacity
-                onPress={() => {
-                    navigate("Board")
-                }}
-            >
-                <Text>board</Text>
-            </TouchableOpacity>
-            <BoardSelect ider={2} />
-        </View>
-    )
-}
+const Board = ({ navigation: { navigate } }) => (
+    <View style={styles.container}>
+        <Text style={styles.title}>Boards</Text>
+        <BoardList />
+    </View>
+)
 
-export default Main
+export default Board
