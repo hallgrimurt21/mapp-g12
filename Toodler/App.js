@@ -1,7 +1,7 @@
 import "react-native-gesture-handler"
 import React from "react"
-import HomeScreen from "./src/views/Main"
+import Main from "./src/views/Main"
 
 export default function App () {
-    return <HomeScreen />
+    return <Main />
 }
