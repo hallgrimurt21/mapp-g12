@@ -6,6 +6,7 @@ import { deviceWidth } from "../styles/deviceWidth"
 import { shadows } from "../styles/shadows"
 import { white } from "../styles/colors"
 import { BlurView } from "expo-blur"
+import hexToRgb from "./hexToRgb"
 
 export default function List({ list }) {
     const cards = data.tasks.filter((task) => task.listId === list.id)
@@ -13,8 +14,11 @@ export default function List({ list }) {
     return (
         <View style={[styles.container, shadows.smallShadow]}>
             <BlurView
-                style={{ backgroundColor: list.color + "88", borderRadius: 5 }}
-                intensity={20}
+                style={{
+                    backgroundColor: hexToRgb(list.color, 0.7),
+                    borderRadius: 5,
+                }}
+                intensity={50}
             >
                 <View style={[styles.titler]}>
                     <Text style={styles.text}>{list.name}</Text>
@@ -43,7 +47,7 @@ const styles = StyleSheet.create({
     },
     text: {
         color: "black",
-        fontSize: 16,
+        fontSize: 20,
         fontWeight: "bold",
         flexDirection: "row",
         alignContent: "center",
