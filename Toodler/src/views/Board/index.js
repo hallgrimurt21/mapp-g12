@@ -20,7 +20,7 @@ function Board({ route, navigation: { navigate } }) {
             <TouchableOpacity
                 style={styles.button2}
                 onPress={() => {
-                    navigate("Board")
+                    navigate("Main")
                 }}
             >
                 <Image
