@@ -6,10 +6,13 @@ import Board from "../views/Board"
 
 const Stack = createStackNavigator()
 
-function Routes () {
+function Routes() {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Main">
+            <Stack.Navigator
+                screenOptions={{ headerShown: false }}
+                initialRouteName="Main"
+            >
                 <Stack.Screen name="Main" component={Main} />
                 <Stack.Screen name="Board" component={Board} />
             </Stack.Navigator>
