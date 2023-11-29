@@ -10,7 +10,7 @@ export default function List({ list }) {
         <View style={styles.container}>
             <Text style={styles.text}>{list.name}</Text>
             {cards.map((card) => (
-                <Card key={card.id} info={card} />
+                <Card key={card.id} info={card} styles={styles.tasks} />
             ))}
         </View>
     )
@@ -23,7 +23,7 @@ const deviceWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
     container: {
         width: deviceWidth * 0.95, // 95% of the device width
-
+        maxWidth: 500, // max width of 500
         borderColor: "black", // color of the border
         borderWidth: 1, // width of the border
         borderRadius: 5,
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         padding: 5,
         boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
         alignContent: "center",
-        alignSelf: "flex-start",
+        alignSelf: "flex",
     },
     text: {
         color: "black",
@@ -46,6 +46,8 @@ const styles = StyleSheet.create({
     },
         tasks: {
         flexDirection: "column",
+        alignSelf: "center",
+        alignContent: "center",
     },
 
 })
