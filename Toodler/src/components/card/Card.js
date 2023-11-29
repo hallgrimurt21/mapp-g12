@@ -4,24 +4,17 @@ import DescButton from "./DescButton"
 import React, { useState } from "react"
 import { LinearGradient } from "expo-linear-gradient"
 
-export default function Card({ name, description, id, listId, isFinished }) {
-    const [cardData, setCardData] = useState({
-        name,
-        description,
-        id,
-        listId,
-        isFinished,
-    })
+export default function Card({ info }) {
     return (
         <LinearGradient
-            colors={isFinished ? ["blue", "red"] : ["black", "black"]}
+            colors={info.isFinished ? ["blue", "red"] : ["black", "black"]}
             start={{ x: 0.5, y: 1 }}
             end={{ x: 1, y: 1 }}
             style={styles.papa}
         >
             <View style={styles.innerContainer}>
-                <TextCheck style={styles.texCe} info={cardData} />
-                <DescButton style={styles.descButt} info={cardData} />
+                <TextCheck style={styles.texCe} info={info} />
+                <DescButton style={styles.descButt} info={info} />
             </View>
         </LinearGradient>
     )
