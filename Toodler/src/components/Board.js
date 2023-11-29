@@ -1,7 +1,7 @@
 import React from "react"
 import { StyleSheet, View, Text } from "react-native"
 
-export default function Board (props) {
+export default function Board(props) {
     return (
         <View style={styles.container}>
             <View style={styles.row}>
@@ -14,7 +14,7 @@ export default function Board (props) {
 const styles = StyleSheet.create({
     container: {
         height: 800,
-        width: 600,
+        width: 500,
         backgroundColor: "green",
         alignItems: "center",
         justifyContent: "space-between",
@@ -25,8 +25,6 @@ const styles = StyleSheet.create({
         padding: 10,
         marginBottom: 10,
         boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
-        fontFamily: "Roboto",
-        
     },
     Text: {
         alignContent: "center",
