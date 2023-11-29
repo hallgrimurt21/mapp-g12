@@ -21,7 +21,7 @@ const deviceWidth = Dimensions.get("window").width
 const styles = StyleSheet.create({
     container: {
         width: deviceWidth * 0.95, // 95% of the device width
-        maxWidth: 380, // max width of 500
+        maxWidth: 450, // max width of 500
         borderColor: "black", // color of the border
         borderWidth: 1, // width of the border
         borderRadius: 5,
