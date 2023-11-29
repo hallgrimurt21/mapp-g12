@@ -1,11 +1,13 @@
 import React from "react"
 import { StyleSheet, View, Text } from "react-native"
 
-export default function List(props) {
+
+export default function List({ name, children }) {
     return (
         <View style={styles.container}>
-            <View style={styles.row}>
-                <Text style={styles.text}>{props.children}</Text>
+            <Text style={styles.title}>{name}</Text>
+            <View style={styles.tasks}>
+                <Text style={styles.text}>{children}</Text>
             </View>
         </View>
     )
@@ -13,9 +15,9 @@ export default function List(props) {
 
 const styles = StyleSheet.create({
     container: {
-        height: 300,
-        width: 450,
-        backgroundColor: "yellow",
+        height: "fit-content",
+        width: "fit-content",
+        backgroundColor: "tan",
         alignItems: "center",
         justifyContent: "space-between",
         flexDirection: "column",
@@ -23,8 +25,11 @@ const styles = StyleSheet.create({
         borderWidth: 1, // width of the border
         borderRadius: 5,
         padding: 10,
-        marginBottom: 10,
-        boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
+        margin: 10,
+    },
+    title: {
+        fontSize: 40,
+        fontWeight: 'bold',
     },
     text: {
         color: "black",
@@ -48,4 +53,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
     },
+        tasks: {
+        flexDirection: "column",
+    },
+
 })

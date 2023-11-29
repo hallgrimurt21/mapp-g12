@@ -8,7 +8,8 @@ export default function Lister({ board }) {
     return (
         <View>
             <Text>{board.name}</Text>
-            <FlatList
+            <FlatList 
+            horizontal
                 data={data.lists.filter((list) => list.boardId === board.id)}
                 keyExtractor={(list) => list.id.toString()}
                 renderItem={({ item: list }) => (
@@ -26,7 +27,7 @@ export default function Lister({ board }) {
                         />
                     </List>
                 )}
-                style={{ height: 200 }}
+                
             />
         </View>
     )
