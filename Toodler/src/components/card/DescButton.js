@@ -19,8 +19,8 @@ export default function DescButton({ info }) {
 
 const styles = StyleSheet.create({
     button: {
-        width: 25,
-        height: 25,
+        width: 28,
+        height: 28,
         fontSize: 2,
         alignItems: "center",
         justifyContent: "center",
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         backgroundColor: "lightgrey",
     },
     buttonText: {
-        fontSize: 22,
+        fontSize: 18,
         color: "black",
         justifyContent: "center",
         marginBottom: 10,

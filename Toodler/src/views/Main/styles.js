@@ -14,7 +14,6 @@ export default StyleSheet.create({
         marginTop: 50,
         marginBottom: 30,
         textShadowColor: "black",
-        textShadowOffset: 0,
         textShadowRadius: 5,
     },
 })

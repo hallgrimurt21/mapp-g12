@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native"
-import { colors, metrics } from "../../styles/colors"
+import { offWhite, white } from "../../styles/colors"
 import { deviceWidth } from "../../styles/deviceWidth"
 
 export default StyleSheet.create({
@@ -53,9 +53,13 @@ export default StyleSheet.create({
     },
     button2: {
         height: 50,
-        width: deviceWidth * 1,
-        borderTopColor: "black",
-        borderTopWidth: 1,
+        width: deviceWidth,
         justifyContent: "center",
+        marginTop: 4,
+        paddingBottom: 12,
+        backgroundColor: white,
+    },
+    backwhite: {
+        backgroundColor: offWhite,
     },
 })

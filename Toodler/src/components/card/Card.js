@@ -2,12 +2,11 @@ import { StyleSheet, View, Dimensions } from "react-native"
 import TextCheck from "./TextCheck"
 import DescButton from "./DescButton"
 import React, { useState } from "react"
-import { LinearGradient } from "expo-linear-gradient"
-import { deviceWidth } from "../../styles/deviceWidth"
+import { shadows } from "../../styles/shadows"
 
 export default function Card({ info }) {
     return (
-        <View style={styles.innerContainer}>
+        <View style={[styles.innerContainer, shadows.smallShadow]}>
             <TextCheck style={styles.texCe} info={info} />
             <DescButton style={styles.descButt} info={info} />
         </View>
@@ -15,17 +14,6 @@ export default function Card({ info }) {
 }
 
 const styles = StyleSheet.create({
-    papa: {
-        height: 80,
-        width: deviceWidth * 0.92,
-        maxWidth: 440,
-        borderRadius: 1,
-        boxShadow: "0px 0px 3px 0px rgba(0,0,0,0.75)",
-        backgroundColor: "white",
-        justifyContent: "space-between",
-        alignSelf: "center",
-        margin: 5,
-    },
     texCe: {
         flex: 1,
     },

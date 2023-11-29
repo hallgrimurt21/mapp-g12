@@ -1,16 +1,8 @@
 import React from "react"
-import {
-    FlatList,
-    Text,
-    View,
-    StyleSheet,
-    ScrollView,
-    Button,
-} from "react-native"
+import { View, StyleSheet, ScrollView, Button } from "react-native"
 import data from "../resources/data.json"
-import Card from "./card/Card"
 import List from "./List"
-import { handleAddTask } from "../views/Main/index"
+import offWhite from "../styles/colors"
 
 export default function Lister({ board }) {
     const lists = data.lists.filter((list) => list.boardId === board.id)
@@ -28,7 +20,7 @@ export default function Lister({ board }) {
                 </ScrollView>
             </>
             <View style={styles.newList}>
-                <Button title="New List" onPress={handleAddTask} />
+                <Button style={styles.newbie} title="New List" />
             </View>
         </>
     )

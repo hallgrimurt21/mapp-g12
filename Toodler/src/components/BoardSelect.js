@@ -3,7 +3,7 @@ import React from "react"
 import { FlatList, Text, StyleSheet } from "react-native"
 import data from "../resources/data.json"
 import { strongrange } from "../styles/colors"
-import { deviceWidth } from "../styles/deviceWidth"
+import { shadows } from "../styles/shadows"
 
 export default function BoardSelect({ ider }) {
     // replace with the ID of the board you want to display
@@ -13,7 +13,9 @@ export default function BoardSelect({ ider }) {
     return (
         <>
             <Text style={styles.empty}> </Text>
-            <Text style={styles.title}>{board.name}</Text>
+            <Text style={[styles.title, shadows.smallShadow]}>
+                {board.name}
+            </Text>
             <Lister board={board} />
         </>
     )
@@ -24,19 +26,17 @@ const styles = StyleSheet.create({
         fontSize: 28,
         alignSelf: "stretch",
         fontWeight: "bold",
-        color: "black",
         padding: 10,
         margin: 10,
         marginTop: 0,
         color: strongrange,
-        // shadowColor: "black",
-        // shadowOffset: { width: 0, height: 0 },
-        // shadowRadius: 4,
         alignSelf: "flex-start",
         borderColor: "black",
         borderWidth: 1,
+        borderRadius: 4,
+        backgroundColor: "white",
     },
     empty: {
-        height: 30,
+        height: 80,
     },
 })
