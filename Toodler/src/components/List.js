@@ -17,7 +17,7 @@ export default function List({ list }) {
                 shadows.smallShadow,
             ]}
         >
-            <View style={[styles.titler, shadows.smallUnder]}>
+            <View style={[styles.titler]}>
                 <Text style={styles.text}>{list.name}</Text>
             </View>
             {cards.map((card) => (
@@ -35,8 +35,6 @@ const styles = StyleSheet.create({
         alignSelf: "flex",
         width: deviceWidth * 0.95, // 95% of the device width
         maxWidth: 450, // max width of 500
-        borderColor: "black", // color of the border
-        borderWidth: 1, // width of the border
         borderRadius: 2,
         marginLeft: Math.min(deviceWidth * 0.025, 10),
         marginRight: Math.min(deviceWidth * 0.025, 10),
@@ -60,8 +58,10 @@ const styles = StyleSheet.create({
         alignSelf: "flex-start",
         marginBottom: 3,
         borderRadius: 2,
-        borderWidth: 1,
         borderTopWidth: 0,
         borderLeftWidth: 0,
+        borderTopRightRadius: 0,
+        borderTopLeftRadius: 0,
+        borderBottomLeftRadius: 0,
     },
 })

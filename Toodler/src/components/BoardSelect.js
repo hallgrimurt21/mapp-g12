@@ -1,6 +1,6 @@
 import Lister from "./Lister"
 import React from "react"
-import { FlatList, Text, StyleSheet } from "react-native"
+import { Text, StyleSheet, View } from "react-native"
 import data from "../resources/data.json"
 import { strongrange } from "../styles/colors"
 import { shadows } from "../styles/shadows"
@@ -13,27 +13,30 @@ export default function BoardSelect({ ider }) {
     return (
         <>
             <Text style={styles.empty}> </Text>
-            <Text style={[styles.title, shadows.smallShadow]}>
-                {board.name}
-            </Text>
+            <View style={[styles.title, shadows.smallUnder]}>
+                <Text style={styles.titleText}>{board.name}</Text>
+            </View>
             <Lister board={board} />
         </>
     )
 }
 
 const styles = StyleSheet.create({
-    title: {
+    titleText: {
         fontSize: 28,
-        alignSelf: "stretch",
         fontWeight: "bold",
-        padding: 10,
-        margin: 10,
         marginTop: 0,
         color: strongrange,
         alignSelf: "flex-start",
-        borderColor: "black",
-        borderWidth: 1,
-        borderRadius: 4,
+        backgroundColor: "white",
+    },
+    title: {
+        alignSelf: "stretch",
+        padding: 10,
+        margin: 10,
+        marginTop: 0,
+        alignSelf: "flex-start",
+        borderRadius: 5,
         backgroundColor: "white",
     },
     empty: {
