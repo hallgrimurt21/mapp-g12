@@ -7,13 +7,11 @@ import List from "./List"
 export default function Lister({ board }) {
     const lists = data.lists.filter((list) => list.boardId === board.id)
     return (
-        <><Text style={styles.title}>{board.name}</Text>
         <ScrollView style={styles.lister} horizontal={true} pagingEnabled>
-
             {lists.map((list) => (
                 <List key={list.id} list={list} />
             ))}
-        </ScrollView></>
+        </ScrollView>
     )
 }
 
@@ -28,12 +26,5 @@ const styles = StyleSheet.create({
         width: "100%",
         marginHorizontal: 20,
         flexDirection: "row",
-    },
-    title: {
-        backgroundColor: "gold",
-        fontSize: 28,
-        alignSelf: "stretch" ,
-        fontWeight: "bold",
-        color: "navy",
     },
 })

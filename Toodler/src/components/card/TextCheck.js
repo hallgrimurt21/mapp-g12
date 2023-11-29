@@ -28,8 +28,6 @@ const styles = StyleSheet.create({
         color: "black",
         fontSize: 16,
         fontWeight: "bold",
-        textShadowRadius: 1,
-        textShadowColor: "black",
         marginRight: 10,
     },
     checkbox: {

@@ -2,12 +2,14 @@ import React from "react"
 import { StyleSheet, View, Text, Dimensions } from "react-native"
 import data from "../resources/data.json"
 import Card from "./card/Card"
+import { offWhite } from "../styles/colors"
+import { deviceWidth } from "../styles/deviceWidth"
 
 export default function List({ list }) {
     const cards = data.tasks.filter((task) => task.listId === list.id)
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { backgroundColor: list.color }]}>
             <Text style={styles.text}>{list.name}</Text>
             {cards.map((card) => (
                 <Card key={card.id} info={card} />
@@ -16,8 +18,6 @@ export default function List({ list }) {
     )
 }
 
-const deviceWidth = Dimensions.get("window").width
-
 const styles = StyleSheet.create({
     container: {
         alignSelf: "flex",
@@ -25,9 +25,10 @@ const styles = StyleSheet.create({
         maxWidth: 450, // max width of 500
         borderColor: "black", // color of the border
         borderWidth: 1, // width of the border
-        borderRadius: 5,
-        margin: 10,
-        boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
+        borderRadius: 2,
+        marginLeft: Math.min(deviceWidth * 0.025, 10),
+        marginRight: Math.min(deviceWidth * 0.025, 10),
+        marginTop: 10,
     },
     text: {
         color: "black",
