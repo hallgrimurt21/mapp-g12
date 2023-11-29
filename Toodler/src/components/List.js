@@ -1,18 +1,20 @@
 import React from "react"
-import { StyleSheet, View, Text, Dimensions } from "react-native"
+import { StyleSheet, View, Text, Dimensions, Button } from "react-native"
 import data from "../resources/data.json"
 import Card from "./card/Card"
+import { handleAddTask } from "../views/Main/index"
 
 export default function List({ list }) {
     const cards = data.tasks.filter((task) => task.listId === list.id)
 
     return (
-        <View style={styles.container}>
+        <><View style={styles.container}>
             <Text style={styles.text}>{list.name}</Text>
             {cards.map((card) => (
                 <Card key={card.id} info={card} styles={styles.tasks} />
             ))}
-        </View>
+            <Button title="Add Task" onPress={handleAddTask} />
+        </View></>
     )
 }
 
@@ -47,5 +49,11 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         alignSelf: "center",
         alignContent: "center",
+    },
+    newList: {
+        flexDirection: "row",
+        alignSelf: "center",
+        alignContent: "center",
+        paddingBottom: 5,
     },
 })
