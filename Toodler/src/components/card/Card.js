@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
         boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.75)",
         backgroundColor: "white",
         justifyContent: "space-between",
+        alignSelf: "center",
     },
     texCe: {
         flex: 1,

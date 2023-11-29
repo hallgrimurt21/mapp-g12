@@ -16,14 +16,12 @@ export default function List({ list }) {
     )
 }
 
-const deviceWidth = Dimensions.get('window').width;
-
-
+const deviceWidth = Dimensions.get("window").width
 
 const styles = StyleSheet.create({
     container: {
         width: deviceWidth * 0.95, // 95% of the device width
-        maxWidth: 500, // max width of 500
+        maxWidth: 380, // max width of 500
         borderColor: "black", // color of the border
         borderWidth: 1, // width of the border
         borderRadius: 5,
@@ -45,10 +43,9 @@ const styles = StyleSheet.create({
         paddingLeft: 5,
         paddingBottom: 5,
     },
-        tasks: {
+    tasks: {
         flexDirection: "column",
         alignSelf: "center",
         alignContent: "center",
     },
-
 })
