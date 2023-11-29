@@ -47,12 +47,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
     },
     newList: {
-        backgroundColor: "gold",
-        border: "2px solid black",
-        borderColor: "black", // color of the border
         flexDirection: "column",
         alignSelf: "stretch",
         alignContent: "center",
-        paddingBottom: 50,
     },
 })

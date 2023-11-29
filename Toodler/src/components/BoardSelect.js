@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
         color: "black",
         padding: 10,
         margin: 10,
+        marginTop: 0,
         color: strongrange,
         // shadowColor: "black",
         // shadowOffset: { width: 0, height: 0 },

@@ -42,10 +42,4 @@ const styles = StyleSheet.create({
         alignSelf: "left",
         padding: 5,
     },
-    newList: {
-        flexDirection: "row",
-        alignSelf: "center",
-        alignContent: "center",
-        paddingBottom: 5,
-    },
 })
