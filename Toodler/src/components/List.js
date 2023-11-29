@@ -1,5 +1,5 @@
 import React from "react"
-import { StyleSheet, View, Text, FlatList } from "react-native"
+import { StyleSheet, View, Text, Dimensions } from "react-native"
 import data from "../resources/data.json"
 import Card from "./card/Card"
 
@@ -16,8 +16,14 @@ export default function List({ list }) {
     )
 }
 
+const deviceWidth = Dimensions.get('window').width;
+
+
+
 const styles = StyleSheet.create({
     container: {
+        width: deviceWidth * 0.95, // 95% of the device width
+
         borderColor: "black", // color of the border
         borderWidth: 1, // width of the border
         borderRadius: 5,
