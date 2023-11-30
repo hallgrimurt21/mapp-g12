@@ -1,9 +1,10 @@
 import React from "react"
-import { Text, StyleSheet, View, ImageBackground } from "react-native"
+import { Text } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
 import MaskedView from "@react-native-masked-view/masked-view"
+import styles from "./styles"
 
-export default function PrettyText({ text }) {
+function PrettyText({ text }) {
     return (
         <MaskedView
             style={{ flexDirection: "row", height: "auto" }}
@@ -22,11 +23,4 @@ export default function PrettyText({ text }) {
     )
 }
 
-const styles = StyleSheet.create({
-    titleTextMask: {
-        fontSize: 28,
-        fontWeight: "bold",
-        alignSelf: "flex-start",
-        backgroundColor: "transparent",
-    },
-})
+export default PrettyText

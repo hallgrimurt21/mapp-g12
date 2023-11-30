@@ -1,21 +1,6 @@
+import { StyleSheet } from "react-native"
 import React, { useState } from "react"
-import { StyleSheet, View, Text, Pressable } from "react-native"
-
-export default function DescButton({ info }) {
-    const [isPressed, setIsPressed] = useState(false)
-    return (
-        <View style={styles.container}>
-            <Text style={styles.description}>{info.description}</Text>
-            <Pressable
-                style={[styles.button, isPressed && styles.buttonPressed]}
-                onPressIn={() => setIsPressed(true)}
-                onPressOut={() => setIsPressed(false)}
-            >
-                <Text style={styles.buttonText}>...</Text>
-            </Pressable>
-        </View>
-    )
-}
+import { white, grey, black } from "../../../styles/colors"
 
 const styles = StyleSheet.create({
     button: {
@@ -29,12 +14,12 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     description: {
-        color: "grey",
+        color: grey,
         fontSize: 12,
     },
     container: {
         flex: 1,
-        backgroundColor: "white",
+        backgroundColor: white,
         margin: 1, // Adjust this value to change the width of the border
         borderRadius: 2,
         justifyContent: "space-between",
@@ -46,8 +31,10 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontSize: 18,
-        color: "black",
+        color: black,
         justifyContent: "center",
         marginBottom: 10,
     },
 })
+
+export default styles

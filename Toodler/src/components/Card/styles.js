@@ -1,17 +1,6 @@
-import { StyleSheet, View, Dimensions } from "react-native"
-import TextCheck from "./TextCheck"
-import DescButton from "./DescButton"
-import React, { useState } from "react"
-import { shadows } from "../../styles/shadows"
-
-export default function Card({ info }) {
-    return (
-        <View style={[styles.innerContainer, shadows.smallShadow]}>
-            <TextCheck style={styles.texCe} info={info} />
-            <DescButton style={styles.descButt} info={info} />
-        </View>
-    )
-}
+import { StyleSheet } from "react-native"
+import React from "react"
+import { white, black } from "../../styles/colors"
 
 const styles = StyleSheet.create({
     texCe: {
@@ -23,7 +12,7 @@ const styles = StyleSheet.create({
 
     innerContainer: {
         justifyContent: "space-between",
-        backgroundColor: "white",
+        backgroundColor: white,
         flexDirection: "column",
         height: 76,
         margin: 1, // Adjust this value to change the width of the border
@@ -37,10 +26,12 @@ const styles = StyleSheet.create({
 
     checkboxContainer: {
         borderWidth: 1,
-        borderColor: "black",
+        borderColor: black,
         borderRadius: 5,
     },
     checkboxText: {
         marginLeft: 8,
     },
 })
+
+export default styles

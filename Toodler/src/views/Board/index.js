@@ -4,7 +4,7 @@ import BoardSelect from "../../components/BoardSelect"
 import { Image } from "expo-image"
 import styles from "./styles"
 import { shadows } from "../../styles/shadows"
-import hamburgerImage from "../../components/Images/Hamburger.png"
+import hamburgerImage from "../../resources/Images/Hamburger.png"
 
 function Board({ route, navigation: { navigate } }) {
     const { id } = route.params

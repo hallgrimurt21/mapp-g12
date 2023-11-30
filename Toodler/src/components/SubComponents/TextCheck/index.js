@@ -1,8 +1,9 @@
-import { StyleSheet, View, Text } from "react-native"
+import { View, Text } from "react-native"
 import React, { useState } from "react"
 import Checkbox from "expo-checkbox"
+import styles from "./styles"
 
-export default function TextCheck({ info }) {
+function TextCheck({ info }) {
     const [isChecked, setChecked] = useState(info.isFinished)
 
     return (
@@ -25,21 +26,4 @@ export default function TextCheck({ info }) {
     )
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-    },
-    text: {
-        color: "black",
-        fontSize: 16,
-        fontWeight: "bold",
-        marginRight: 10,
-    },
-    checkbox: {
-        fontSize: 150,
-        fontWeight: "lighter",
-        margin: 8,
-    },
-})
+export default TextCheck
