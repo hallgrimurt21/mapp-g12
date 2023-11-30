@@ -1,13 +1,26 @@
 import React from "react"
-import { View, Text } from "react-native"
+import { View, TouchableOpacity } from "react-native"
+import BoardSelect from "../../components/BoardSelect"
+import { Image } from "expo-image"
 import styles from "./styles"
-import BoardList from "../../components/BoardList"
+import { shadows } from "../../styles/shadows"
+import hamburgerImage from "../../resources/Images/Hamburger.png"
 
-const Main = ({ navigation: { navigate } }) => (
-    <View style={styles.container}>
-        <Text style={styles.title}>Boards</Text>
-        <BoardList />
-    </View>
-)
+function Board({ route, navigation: { navigate } }) {
+    const { id } = route.params
+    return (
+        <View style={[styles.viewer, styles.backwhite]}>
+            <BoardSelect style={styles.backwhite} ider={id} />
+            <TouchableOpacity
+                style={[styles.button2, shadows.smallShadow]}
+                onPress={() => {
+                    navigate("Main")
+                }}
+            >
+                <Image source={hamburgerImage} style={styles.buttonText2} />
+            </TouchableOpacity>
+        </View>
+    )
+}
 
 export default Main

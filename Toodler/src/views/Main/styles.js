@@ -37,25 +37,9 @@ export default StyleSheet.create({
     buttonText: {
         fontSize: 14,
         fontWeight: "bold",
-        // color: colors.primary,
-    },
-    viewer: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "white",
-    },
-
-    buttonText2: {
-        width: 30,
-        height: 30,
-        alignSelf: "center",
-    },
-    button2: {
-        height: 50,
-        width: deviceWidth * 1,
-        borderTopColor: "black",
-        borderTopWidth: 1,
-        justifyContent: "center",
+        marginTop: 50,
+        marginBottom: 30,
+        textShadowColor: "black",
+        textShadowRadius: 5,
     },
 })
