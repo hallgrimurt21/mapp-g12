@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { View, Text, Button, ScrollView } from "react-native"
 import { getX, get1X, changeX, addX } from "../../Functions/storage"
-import { addTask, getTasksByList } from "../../Functions/Manager"
+import { addTask, getTasks, getTasksByList } from "../../Functions/Manager"
 import Card from "../Card"
 import { shadows } from "../../styles/shadows"
 import { BlurView } from "expo-blur"
@@ -18,6 +18,12 @@ function List({ list }) {
         })
     }, [list.id])
     
+    function addTaskAndGetTasks(task){
+        addTask(task)
+        getTasksByList(list.id).then((tasks) => {
+            setCards(tasks)
+        })
+    }
 
     return (
         <View style={[styles.container, shadows.mediumShadow]}>
@@ -38,7 +44,7 @@ function List({ list }) {
                     ))}
 
                     <View style={styles.adder}>
-                        <Button style={styles.butRad} title="Add Task" onPress={() => addTask({name: "Eat dinne24r", description: "Get some sugar",listId:list.id})}/>
+                        <Button style={styles.butRad} title="Add Task" onPress={() => addTaskAndGetTasks({name: "Eat dinne24r", description: "Get some sugar",listId:list.id})}/>
                     </View>
                 </ScrollView>
             </BlurView>

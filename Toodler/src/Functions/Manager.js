@@ -11,6 +11,7 @@ export const addTask = async (task) => {
     task.isFinished = false
     await addX("tasks", task)
     
+    
 }
 
 
