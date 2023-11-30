@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native"
-import { offWhite, white } from "../../styles/colors"
+import { offWhite, white, darkerBlue } from "../../styles/colors"
 import { deviceWidth } from "../../styles/deviceWidth"
 
 export default StyleSheet.create({

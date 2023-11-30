@@ -23,4 +23,4 @@ function Board({ route, navigation: { navigate } }) {
     )
 }
 
-export default Main
+export default Board

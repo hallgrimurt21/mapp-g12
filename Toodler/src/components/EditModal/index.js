@@ -1,4 +1,5 @@
 import React from "react"
+import { Text } from "react-native"
 import Modal from "../Modal"
 import styles from "./styles"
 
@@ -8,7 +9,9 @@ const EditModal = ({
 }) => (
     <Modal
         isOpen={isOpen}
-        closeModal={closeModal}>
+        closeModal={closeModal}
+        title="Edit">
+        <Text>Hello World</Text>
     </Modal>
 )
 

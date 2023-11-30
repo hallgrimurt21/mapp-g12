@@ -21,4 +21,4 @@ const Main = ({ navigation: { navigate } }) => (
     </View>
 )
 
-export default Board
+export default Main

@@ -1,11 +1,10 @@
 import { StyleSheet } from "react-native"
-import { colors, metrics } from "../../styles/colors"
 import { deviceWidth } from "../../styles/deviceWidth"
 
 export default StyleSheet.create({
     container: {
         flex: 1,
-        // backgroundColor: colors.primary,
+        backgroundColor: "darkerBlue",
         alignItems: "center",
         justifyContent: "center",
     },
