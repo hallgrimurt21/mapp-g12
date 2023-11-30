@@ -19,10 +19,11 @@ function List({ list }) {
     }, [list.id])
     
     function addTaskAndGetTasks(task){
-        addTask(task)
+        addTask(task).then(() => {
         getTasksByList(list.id).then((tasks) => {
             setCards(tasks)
         })
+    })
     }
 
     return (
