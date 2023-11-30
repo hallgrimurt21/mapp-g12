@@ -1,6 +1,6 @@
 import React from "react"
 import { View, Text, Button, ScrollView } from "react-native"
-import data from "../../resources/data.json"
+import { getX, get1X, changeX, addX } from "../Functions/storage"
 import Card from "../Card"
 import { shadows } from "../../styles/shadows"
 import { BlurView } from "expo-blur"
@@ -8,7 +8,8 @@ import hexToRgb from "../../Functions/hexToRgb"
 import styles from "./styles"
 
 function List({ list }) {
-    const cards = data.tasks.filter((task) => task.listId === list.id)
+    const data = getX("tasks")
+    const cards = data.filter((task) => task.listId === list.id)
 
     return (
         <View style={[styles.container, shadows.mediumShadow]}>
