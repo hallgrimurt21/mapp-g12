@@ -8,8 +8,12 @@ export const getTasks = async () => {
 }
 
 export const addTask = async (task) => {
+    task.isFinished = false
     await addX("tasks", task)
+    
 }
+
+
 
 export const deleteTask = async (key) => {
     await deleteX("tasks", key)

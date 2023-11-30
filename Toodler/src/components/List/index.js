@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react"
 import { View, Text, Button, ScrollView } from "react-native"
 import { getX, get1X, changeX, addX } from "../../Functions/storage"
-import { getTasksByList } from "../../Functions/Manager"
+import { addTask, getTasksByList } from "../../Functions/Manager"
 import Card from "../Card"
 import { shadows } from "../../styles/shadows"
 import { BlurView } from "expo-blur"
 import hexToRgb from "../../Functions/hexToRgb"
 import styles from "./styles"
-import data from "../../resources/data.json"
+
 
 function List({ list }) {
     const [cards, setCards] = useState([])
@@ -17,6 +17,7 @@ function List({ list }) {
             setCards(tasks)
         })
     }, [list.id])
+    
 
     return (
         <View style={[styles.container, shadows.mediumShadow]}>
@@ -37,7 +38,7 @@ function List({ list }) {
                     ))}
 
                     <View style={styles.adder}>
-                        <Button style={styles.butRad} title="Add Task" />
+                        <Button style={styles.butRad} title="Add Task" onPress={() => addTask({name: "Eat dinne24r", description: "Get some sugar",listId:list.id})}/>
                     </View>
                 </ScrollView>
             </BlurView>
