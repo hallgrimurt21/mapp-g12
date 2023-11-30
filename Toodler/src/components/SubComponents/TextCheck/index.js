@@ -29,7 +29,7 @@ function TextCheck({ info }) {
                 style={styles.checkbox}
                 value={isChecked}
                 onValueChange={setChecked}
-                onPress={() => setIsChecked(!isChecked)}
+                onPress={() => setChecked(!isChecked)}
                 textStyle={{ marginLeft: 8 }}
                 size={10} // Adjust the size to control the border width indirectly
             />
