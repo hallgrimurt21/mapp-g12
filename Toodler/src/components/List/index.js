@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react"
 import { View, Text, Button, ScrollView } from "react-native"
-import { getX, get1X, changeX, addX } from "../../Functions/storage"
 import { getTasksByList } from "../../Functions/Manager"
 import Card from "../Card"
 import { shadows } from "../../styles/shadows"
 import { BlurView } from "expo-blur"
 import hexToRgb from "../../Functions/hexToRgb"
 import styles from "./styles"
-import data from "../../resources/data.json"
 
 function List({ list }) {
     const [cards, setCards] = useState([])
