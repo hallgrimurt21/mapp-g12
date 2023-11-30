@@ -4,7 +4,7 @@ import data from "../../resources/data.json"
 import Card from "../Card"
 import { shadows } from "../../styles/shadows"
 import { BlurView } from "expo-blur"
-import hexToRgb from "../Functions/hexToRgb"
+import hexToRgb from "../../Functions/hexToRgb"
 import styles from "./styles"
 
 function List({ list }) {
