@@ -1,11 +1,72 @@
 import { StyleSheet } from "react-native"
+import React from "react"
+import { deviceWidth } from "../../../styles/deviceWidth"
 
 export default StyleSheet.create({
     input: {
         height: 40,
-        margin: 12,
+        marginBottom: 12,
         borderWidth: 1,
+        textAlign: "left",
+        width: "100%",
         padding: 10,
+        borderRadius: 4,
+    },
+    modal: {
+        width: Math.min(deviceWidth * 0.9, 350),
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 15,
+        backgroundColor: "white",
+        borderRadius: 8,
+        padding: 15,
+        shadowColor: "black",
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
+        shadowOffset: {
+            width: 0, // These can't both be 0
+            height: 1, // i.e. the shadow has to be offset in some way
+        },
+    },
+
+    Button: {
+        width: Math.min(deviceWidth * 0.5, 150),
+        height: 40,
+        borderWidth: 1,
+        borderRadius: 4,
+        alignSelf: "flex-start",
         textAlign: "center",
+        justifyContent: "center",
+        alignItems: "center",
+        shadowColor: "black",
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
+        shadowOffset: {
+            width: 0, // These can't both be 0
+            height: 1, // i.e. the shadow has to be offset in some way
+        },
+    },
+    title: {
+        width: Math.min(deviceWidth * 0.9, 350),
+        backgroundColor: "white",
+        borderRadius: 8,
+        shadowColor: "black",
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
+        shadowOffset: {
+            width: 0, // These can't both be 0
+            height: 1, // i.e. the shadow has to be offset in some way
+        },
+    },
+
+    titleText: {
+        padding: 10,
+        fontSize: 20,
+        fontWeight: "bold",
+        textAlign: "center",
+    },
+    insider: {
+        padding: 20,
+        width: "100%",
     },
 })

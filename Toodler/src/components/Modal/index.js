@@ -9,7 +9,8 @@ const Modal = ({ isOpen, closeModal, title, children }) => (
         onBackButtonPress={closeModal}
         onBackdropPress={closeModal}
         style={styles.modal}
-        animationOut={"fadeOut"}>
+        animationOut={"fadeOut"}
+    >
         <View style={styles.body}>
             <Text>{title}</Text>
             {children}
