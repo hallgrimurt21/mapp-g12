@@ -15,11 +15,10 @@ function List({ list }) {
             <BlurView
                 style={[
                     {
-                        backgroundColor: hexToRgb(list.color, 0.7),
+                        backgroundColor: hexToRgb(list.color, 0.3),
                         borderRadius: 5,
                     },
                 ]}
-                intensity={50}
             >
                 <View style={[styles.titler]}>
                     <Text style={styles.text}>{list.name}</Text>

@@ -15,11 +15,12 @@ function TextCheck({ info }) {
         })
     }, [isChecked])
 
-    useEffect(() => {
-        get1X("tasks", info.id).then((task) => {
-            console.log(task)
-        })
-    }, [isChecked])
+    ////////////////check if the isFinished value is updated
+    // useEffect(() => {
+    //     get1X("tasks", info.id).then((task) => {
+    //         console.log(task)
+    //     })
+    // }, [isChecked])
 
     /////////////////////////////////
     return (
