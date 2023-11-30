@@ -1,21 +1,16 @@
 import { StyleSheet } from "react-native"
-import { offWhite, white } from "../../styles/colors"
+import { offWhite, white, darkerBlue } from "../../styles/colors"
 import { deviceWidth } from "../../styles/deviceWidth"
 
 export default StyleSheet.create({
     container: {
-        flex: 1,
-        // backgroundColor: colors.primary,
+        height: "100%",
+        backgroundColor: darkerBlue,
         alignItems: "center",
-        justifyContent: "center",
-    },
-    logo: {
-        width: 100,
-        height: 100,
-        resizeMode: "contain",
     },
     title: {
-        fontSize: 24,
+        color: "white",
+        fontSize: 40,
         fontWeight: "bold",
         // color: colors.white,
         // marginTop: metrics.baseMargin,

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
 import { View, Text, Button, ScrollView } from "react-native"
-import { getX, get1X, changeX, addX } from "../../Functions/storage"
 import { addTask, getTasks, getTasksByList } from "../../Functions/Manager"
 import Card from "../Card"
 import { shadows } from "../../styles/shadows"
