@@ -23,6 +23,7 @@ export const changeX = async (varb, key, value) => {
 
 export const addX = async (varb, value) => {
     const items = await getX(varb)
+    value.id = items.length + 1 //
     ////////////////////////////add id to value
     items.push(value)
     await AsyncStorage.setItem(varb, JSON.stringify(items))
