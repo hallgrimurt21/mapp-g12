@@ -2,19 +2,18 @@ import { View, Text } from "react-native"
 import React, { useEffect, useState } from "react"
 import Checkbox from "expo-checkbox"
 import styles from "./styles"
-import { getX, changeX, get1X } from "../../Functions/storage"
+import { getX, changeX, get1X } from "../../../Functions/storage"
+import { changeTask } from "../../../Functions/Manager"
 
 function TextCheck({ info }) {
     const [isChecked, setChecked] = useState(info.isFinished)
     ////////////////update the task's isFinished value in storage
     useEffect(() => {
         info.isFinished = isChecked
-        getX("tasks").then((tasks) => {
-            tasks[info.id] = info
-            changeX("tasks", info.id, info)
-        })
+        changeTask(info)
     }, [isChecked])
 
+    //////////////check if the isFinished value is updated
     useEffect(() => {
         get1X("tasks", info.id).then((task) => {
             console.log(task)

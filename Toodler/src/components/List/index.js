@@ -4,7 +4,7 @@ import { getX, get1X, changeX, addX } from "../Functions/storage"
 import Card from "../Card"
 import { shadows } from "../../styles/shadows"
 import { BlurView } from "expo-blur"
-import hexToRgb from "../Functions/hexToRgb"
+import hexToRgb from "../../Functions/hexToRgb"
 import styles from "./styles"
 
 function List({ list }) {
@@ -16,11 +16,10 @@ function List({ list }) {
             <BlurView
                 style={[
                     {
-                        backgroundColor: hexToRgb(list.color, 0.7),
+                        backgroundColor: hexToRgb(list.color, 0.3),
                         borderRadius: 5,
                     },
                 ]}
-                intensity={50}
             >
                 <View style={[styles.titler]}>
                     <Text style={styles.text}>{list.name}</Text>
