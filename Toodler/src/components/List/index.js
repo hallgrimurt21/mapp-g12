@@ -6,8 +6,11 @@ import { shadows } from "../../styles/shadows"
 import { BlurView } from "expo-blur"
 import hexToRgb from "../../Functions/hexToRgb"
 import styles from "./styles"
+import AddCardModal from "../Modals/AddCardModal"
 
 function List({ list }) {
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+    const [isAddModalOpen, setIsAddModalOpen] = useState(false)
     const [cards, setCards] = useState([])
 
     useEffect(() => {
@@ -46,16 +49,24 @@ function List({ list }) {
                         <Button
                             style={styles.butRad}
                             title="Add Task"
-                            onPress={() =>
-                                addTaskAndGetTasks({
-                                    name: "Eat dinne24r",
-                                    description: "Get some sugar",
-                                    listId: list.id,
-                                })
-                            }
+                            onPress={() => {
+                                setIsAddModalOpen(true)
+                            }}
                         />
                     </View>
                 </ScrollView>
+                <AddCardModal
+                    isOpen={isAddModalOpen}
+                    closeModal={() => setIsAddModalOpen(false)}
+                    onModalClose={(name, description) => {
+                        addTaskAndGetTasks({
+                            name: name,
+                            description: description,
+                            listId: list.id,
+                        })
+                        // log the name and description
+                    }}
+                />
             </BlurView>
         </View>
     )

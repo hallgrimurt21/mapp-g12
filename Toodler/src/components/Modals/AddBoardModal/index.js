@@ -1,20 +1,16 @@
 import React from "react"
 import { TextInput, SafeAreaView } from "react-native"
-import Modal from "../Modal"
+import Modal from "../../Modal"
 import styles from "./styles"
 
-const AddModal = ({
-    isOpen,
-    closeModal,
-}) => {
+const AddBoardModal = ({ isOpen, closeModal }) => {
     const [name, onChangeName] = React.useState("Name")
-    const [description, onChangeDescription] = React.useState("Description(optional)")
+    const [description, onChangeDescription] = React.useState(
+        "Description(optional)",
+    )
     const [photo, onChangePhoto] = React.useState("Photo")
     return (
-        <Modal
-            isOpen={isOpen}
-            closeModal={closeModal}
-            title="Add">
+        <Modal isOpen={isOpen} closeModal={closeModal} title="Add">
             <SafeAreaView>
                 <TextInput
                     style={styles.input}
@@ -36,4 +32,4 @@ const AddModal = ({
     )
 }
 
-export default AddModal
+export default AddBoardModal
