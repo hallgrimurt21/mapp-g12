@@ -15,6 +15,7 @@ const Modal = ({ isOpen, closeModal, title, children }) => (
             <Text>{title}</Text>
             {children}
         </View>
+        <View style={styles.empty}></View>
     </NativeModal>
 )
 

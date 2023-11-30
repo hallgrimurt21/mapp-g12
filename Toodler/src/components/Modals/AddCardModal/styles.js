@@ -13,7 +13,7 @@ export default StyleSheet.create({
         borderRadius: 4,
     },
     modal: {
-        width: Math.min(deviceWidth * 0.9, 350),
+        width: Math.min(deviceWidth * 0.98, 400),
         justifyContent: "center",
         alignItems: "center",
         marginTop: 15,
@@ -33,6 +33,7 @@ export default StyleSheet.create({
         width: Math.min(deviceWidth * 0.5, 150),
         height: 40,
         borderWidth: 1,
+        borderRadius: 4,
         alignSelf: "flex-start",
         textAlign: "center",
         justifyContent: "center",
@@ -44,10 +45,10 @@ export default StyleSheet.create({
             width: 0, // These can't both be 0
             height: 1, // i.e. the shadow has to be offset in some way
         },
-        borderRadius: 4,
     },
     title: {
-        width: Math.min(deviceWidth * 0.9, 350),
+        marginTop: 15,
+        width: Math.min(deviceWidth * 0.98, 400),
         backgroundColor: "white",
         borderRadius: 8,
         shadowColor: "black",

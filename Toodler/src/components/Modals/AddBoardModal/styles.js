@@ -13,7 +13,7 @@ export default StyleSheet.create({
         borderRadius: 4,
     },
     modal: {
-        width: Math.min(deviceWidth * 0.9, 350),
+        width: Math.min(deviceWidth * 0.98, 400),
         justifyContent: "center",
         alignItems: "center",
         marginTop: 15,
@@ -47,7 +47,8 @@ export default StyleSheet.create({
         },
     },
     title: {
-        width: Math.min(deviceWidth * 0.9, 350),
+        marginTop: 15,
+        width: Math.min(deviceWidth * 0.98, 400),
         backgroundColor: "white",
         borderRadius: 8,
         shadowColor: "black",

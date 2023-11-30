@@ -1,15 +1,23 @@
-import { StyleSheet, Dimensions } from "react-native"
+import { StyleSheet } from "react-native"
+import { deviceHeight, deviceWidth } from "../../styles/deviceWidth"
 
 export default StyleSheet.create({
     modal: {
-        flex: 1,
-        justifyContent: "center",
         alignItems: "center",
+        justifyContent: "flex-end",
     },
     body: {
-        flex: 1,
         alignItems: "center",
-        justifyContent: "center",
+        width: deviceWidth,
+        backgroundColor: "white",
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+        marginBottom: 0,
         flexGrow: 0.3,
+        overflow: "hidden",
+    },
+    empty: {
+        marginTop: -deviceHeight * 0.2,
+        backgroundColor: "white",
     },
 })

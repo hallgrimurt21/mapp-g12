@@ -11,11 +11,9 @@ import styles from "./styles"
 import { shadows } from "../../../styles/shadows"
 
 const AddBoardModal = ({ isOpen, closeModal }) => {
-    const [name, onChangeName] = React.useState("Name")
-    const [description, onChangeDescription] = React.useState(
-        "Description(optional)",
-    )
-    const [photo, onChangePhoto] = React.useState("Photo")
+    const [name, onChangeName] = React.useState("")
+    const [description, onChangeDescription] = React.useState("")
+    const [photo, onChangePhoto] = React.useState("")
     const titleStyle = [styles.title, shadows.smallShadow]
     const modalStyle = [styles.modal, shadows.smallShadow]
     const buttonStyle = [styles.Button, shadows.smallShadow]
@@ -32,16 +30,22 @@ const AddBoardModal = ({ isOpen, closeModal }) => {
                         style={inputStyle}
                         onChangeText={onChangeName}
                         value={name}
+                        placeholder="Name"
+                        placeholderTextColor={"grey"}
                     />
                     <TextInput
                         style={inputStyle}
                         onChangeText={onChangeDescription}
                         value={description}
+                        placeholder="Description(optional)"
+                        placeholderTextColor={"grey"}
                     />
                     <TextInput
                         style={inputStyle}
                         onChangeText={onChangePhoto}
                         value={photo}
+                        placeholder="Photo(optional)"
+                        placeholderTextColor={"grey"}
                     />
                     <TouchableOpacity style={buttonStyle} activeOpacity={0.5}>
                         <Text>Save</Text>
