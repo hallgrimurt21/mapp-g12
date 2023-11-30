@@ -8,7 +8,6 @@ import { BlurView } from "expo-blur"
 import hexToRgb from "../../Functions/hexToRgb"
 import styles from "./styles"
 
-
 function List({ list }) {
     const [cards, setCards] = useState([])
 
@@ -17,11 +16,12 @@ function List({ list }) {
             setCards(tasks)
         })
     }, [list.id])
-    
-    function addTaskAndGetTasks(task){
-        addTask(task)
-        getTasksByList(list.id).then((tasks) => {
-            setCards(tasks)
+
+    function addTaskAndGetTasks(task) {
+        addTask(task).then(() => {
+            getTasksByList(list.id).then((tasks) => {
+                setCards(tasks)
+            })
         })
     }
 
@@ -44,7 +44,17 @@ function List({ list }) {
                     ))}
 
                     <View style={styles.adder}>
-                        <Button style={styles.butRad} title="Add Task" onPress={() => addTaskAndGetTasks({name: "Eat dinne24r", description: "Get some sugar",listId:list.id})}/>
+                        <Button
+                            style={styles.butRad}
+                            title="Add Task"
+                            onPress={() =>
+                                addTaskAndGetTasks({
+                                    name: "Eat dinne24r",
+                                    description: "Get some sugar",
+                                    listId: list.id,
+                                })
+                            }
+                        />
                     </View>
                 </ScrollView>
             </BlurView>
