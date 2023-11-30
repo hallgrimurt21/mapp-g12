@@ -6,11 +6,10 @@ import styles from "./styles"
 const Modal = ({ isOpen, closeModal}) => (
     <NativeModal
         isVisible={isOpen}
-        hasBackdrop={true}
         onBackButtonPress={closeModal}
-        onSwipeComplete={closeModal}
-        swipeDirection={["up", "down"]}
-        style={styles.modal}>
+        onBackdropPress={closeModal}
+        style={styles.modal}
+        animationOut={"fadeOut"}>
         <View style={styles.body}>
             <Text>Hello World</Text>
         </View>
