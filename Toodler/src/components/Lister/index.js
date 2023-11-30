@@ -3,6 +3,7 @@ import { View, ScrollView, Button } from "react-native"
 import data from "../../resources/data.json"
 import List from "../List"
 import styles from "./styles"
+import { shadows } from "../../styles/shadows"
 
 function Lister({ board }) {
     const lists = data.lists.filter((list) => list.boardId === board.id)

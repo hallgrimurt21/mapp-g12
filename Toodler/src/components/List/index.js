@@ -11,12 +11,14 @@ function List({ list }) {
     const cards = data.tasks.filter((task) => task.listId === list.id)
 
     return (
-        <View style={[styles.container, shadows.smallShadow]}>
+        <View style={[styles.container, shadows.mediumShadow]}>
             <BlurView
-                style={{
-                    backgroundColor: hexToRgb(list.color, 0.7),
-                    borderRadius: 5,
-                }}
+                style={[
+                    {
+                        backgroundColor: hexToRgb(list.color, 0.7),
+                        borderRadius: 5,
+                    },
+                ]}
                 intensity={50}
             >
                 <View style={[styles.titler]}>
