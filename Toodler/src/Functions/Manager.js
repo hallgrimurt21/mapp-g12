@@ -1,3 +1,4 @@
+import React from "react"
 import { getX, changeX, get1X, addX, deleteX } from "./storage"
 
 /////////////////////TASKS////////////////////////
@@ -23,6 +24,11 @@ export const get1Task = async (key) => {
     return task
 }
 
+export const getTasksByList = async (listId) => {
+    const tasks = await getX("tasks")
+    const tasksByList = tasks.filter((task) => task.listId === listId)
+    return tasksByList
+}
 /////////////////////LISTS////////////////////////
 
 export const getLists = async () => {
