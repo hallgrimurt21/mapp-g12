@@ -15,9 +15,10 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
     checkbox: {
-        fontSize: 150,
-        fontWeight: "lighter",
-        margin: 8,
+        width: 25,
+        height: 25,
+        margin: 1,
+        padding: 1,
     },
 })
 

@@ -10,12 +10,7 @@ function TextCheck({ info }) {
         <View style={styles.container}>
             <Text style={styles.text}>{info.name}</Text>
             <Checkbox
-                style={{
-                    width: 25,
-                    height: 25,
-                    margin: 1,
-                    padding: 1,
-                }}
+                style={styles.checkbox}
                 value={isChecked}
                 onValueChange={setChecked}
                 onPress={() => setIsChecked(!isChecked)}

@@ -16,7 +16,11 @@ function Lister({ board }) {
                     pagingEnabled
                 >
                     {lists.map((list) => (
-                        <List key={list.id} list={list} />
+                        <List
+                            key={list.id}
+                            list={list}
+                            style={shadows.mediumShadow}
+                        />
                     ))}
                 </ScrollView>
             </>

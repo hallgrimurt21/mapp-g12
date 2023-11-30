@@ -17,7 +17,7 @@ function Board({ route, navigation: { navigate } }) {
                     navigate("Main")
                 }}
             >
-                <Image source={hamburgerImage} style={[styles.buttonText2]} />
+                <Image source={hamburgerImage} style={styles.buttonText2} />
             </TouchableOpacity>
         </View>
     )
