@@ -48,12 +48,7 @@ const BoardList = () => {
                 <TouchableOpacity
                     key={board.id}
                     style={styles.itemWithBorder}
-                    
                     onPress={() => {
-                        console.log("board.id...", board.id)
-                        console.log("board.name...", board.name)
-                        console.log("board.thumbnailPhoto...", board.thumbnailPhoto)
-                        console.log("board...", board)
                         navigate("Board", { id: board.id })
                     }}
                     onLongPress={() => {
@@ -83,7 +78,8 @@ const BoardList = () => {
                     } else {
                         editBoardAndGetBoards({
                             name,
-                            thumbnailPhoto: "photo",
+                            description,
+                            thumbnailPhoto: photo,
                             id: editingBoard.id,
                         })
                     }
@@ -91,14 +87,12 @@ const BoardList = () => {
             />
             <AddBoardModal
                 isOpen={isAddModalOpen}
-
                 closeModal={() => setIsAddModalOpen(false)}
-                
                 onModalClose={(name, description, photo) => {
-                    console.log("photo...", photo)
                     addBoardAndGetBoards({
                         name,
-                        thumbnailPhoto: photo,
+                        description,
+                        photo,
                     })
                 }}
             />
