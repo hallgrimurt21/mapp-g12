@@ -79,3 +79,36 @@ export const auburn = "#A52A2A"
 export const fun = "#FF5733"
 export const red = "#FF0000"
 export const orange = "#FFA500"
+export const gold = "#FFD700"
+
+export const colors = {
+    white: "#FFFFFF",
+    black: "#000000",
+    grey: "#808080",
+    offWhite: "#FAF9F6",
+    darkRed: "#8B0000",
+    navy: "#000080",
+    springGreen: "#00FF7F",
+    yellow: "#FFFF00",
+    violet: "#EE82EE",
+    orange: "#FFA500",
+    deepPink: "#FF1493",
+    gold: "#FFD700",
+    periwinkle: "#CAE5FF",
+    freshAir: "#ACEDFF",
+    jordyBlue: "#89BBFE",
+    silverLakeBlue: "#6F8AB7",
+    graniteGray: "#615D6C",
+    darkerBlue: "#42638E", 
+    aqua: "#00FFFF",
+    aquamarine: "#7FFFD4",
+    azure: "#F0FFFF",
+    beige: "#F5F5DC",
+    bisque: "#FFE4C4",
+    blanchedAlmond: "#FFEBCD",
+    blueViolet: "#8A2BE2",
+    brown: "#A52A2A",
+    burlyWood: "#DEB887",
+    cadetBlue: "#5F9EA0",
+    
+}
