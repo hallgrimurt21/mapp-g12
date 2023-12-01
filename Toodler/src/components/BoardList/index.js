@@ -5,6 +5,8 @@ import { Text, ScrollView, TouchableOpacity } from "react-native"
 import EditBoardModal from "../Modals/EditBoardModal"
 import AddBoardModal from "../Modals/AddBoardModal"
 import { getBoards, addBoard, changeBoard, deleteBoard } from "../../Functions/Manager"
+import Board from "../../views/Board"
+import BoardSelect from "../BoardSelect"
 
 const BoardList = () => {
     const { navigate } = useNavigation()
@@ -51,7 +53,7 @@ const BoardList = () => {
                     key={board.id}
                     style={styles.itemWithBorder}
                     onPress={() => { 
-                        navigate("", { id: board.id })
+                        navigate("Board", { id: board.id })
                     }
                     }
                     onLongPress={() => {
