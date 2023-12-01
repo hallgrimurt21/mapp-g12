@@ -7,16 +7,14 @@ import {
     LayoutAnimation,
     Platform,
     UIManager,
-    Pressable,
 } from "react-native"
-import { addTask, changeTask, getTasksByList } from "../../Functions/Manager"
+import { addTask, getTasksByList } from "../../Functions/Manager"
 import Card from "../Card"
 import { shadows } from "../../styles/shadows"
 import { BlurView } from "expo-blur"
 import hexToRgb from "../../Functions/hexToRgb"
 import styles from "./styles"
 import AddCardModal from "../Modals/AddCardModal"
-import CardButton from "../CardButton"
 
 function List({ list }) {
     if (
@@ -26,6 +24,7 @@ function List({ list }) {
         UIManager.setLayoutAnimationEnabledExperimental(true)
     }
 
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
     const [cards, setCards] = useState([])
 
@@ -53,7 +52,6 @@ function List({ list }) {
                 console.error("Error adding task: ", error)
             })
     }
-
     return (
         <View style={[styles.container, shadows.mediumShadow]}>
             <BlurView
@@ -69,7 +67,7 @@ function List({ list }) {
                 </View>
                 <ScrollView style={styles.carder}>
                     {cards.map((card) => (
-                        <CardButton key={card.id} info={card} />
+                        <Card key={card.id} info={card} />
                     ))}
 
                     <View style={styles.adder}>
