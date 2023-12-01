@@ -12,6 +12,8 @@ const BoardList = () => {
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
     const [editingBoard, setEditingBoard] = useState(null)
     const [boards, setBoards] = useState([])
+    
+    
     useEffect(() => {
         getBoards().then((boards) => {
             setBoards(boards)
@@ -48,14 +50,10 @@ const BoardList = () => {
                 <TouchableOpacity
                     key={board.id}
                     style={styles.itemWithBorder}
-                    
-                    onPress={() => {
-                        console.log("board.id...", board.id)
-                        console.log("board.name...", board.name)
-                        console.log("board.thumbnailPhoto...", board.thumbnailPhoto)
-                        console.log("board...", board)
-                        navigate("Board", { id: board.id })
-                    }}
+                    onPress={() => { 
+                        navigate("", { id: board.id })
+                    }
+                    }
                     onLongPress={() => {
                         setIsEditModalOpen(true)
                         setEditingBoard(board)
@@ -83,6 +81,7 @@ const BoardList = () => {
                     } else {
                         editBoardAndGetBoards({
                             name,
+                            description,
                             thumbnailPhoto: "photo",
                             id: editingBoard.id,
                         })
@@ -98,6 +97,7 @@ const BoardList = () => {
                     console.log("photo...", photo)
                     addBoardAndGetBoards({
                         name,
+                        description,
                         thumbnailPhoto: photo,
                     })
                 }}
