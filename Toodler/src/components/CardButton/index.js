@@ -22,7 +22,10 @@ function CardButton({ info }) {
     }
 
     return (
-        <Pressable onPress={handlePress}>
+        <Pressable
+            onPress={handlePress}
+            style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1 })}
+        >
             <Card info={cardInfo} />
         </Pressable>
     )
