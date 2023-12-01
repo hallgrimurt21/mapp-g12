@@ -4,22 +4,23 @@ import { deviceHeight, deviceWidth } from "../../styles/deviceWidth"
 export default StyleSheet.create({
     modal: {
         alignItems: "center",
-        justifyContent: "flex-end",
+        justifyContent: "flex-start",
+        alignSelf: "center",
+        backgroundColor: "white",
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+        width: deviceWidth,
+        height: deviceHeight,
+        flexGrow: 1,
+        margin: 0,
+        marginTop: deviceHeight * 0.2,
     },
     body: {
         alignItems: "center",
         justifyContent: "flex-start",
-        width: deviceWidth,
-        backgroundColor: "white",
-        borderBottomLeftRadius: 10,
-        borderBottomRightRadius: 10,
-        marginBottom: 0,
-        flexGrow: 0.6,
-        overflow: "hidden",
-        paddingBottom: 10,
     },
     empty: {
-        marginBottom: -deviceHeight * 0.2,
         backgroundColor: "white",
+        width: deviceWidth,
     },
 })
