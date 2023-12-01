@@ -1,14 +1,29 @@
 import React, { useEffect, useState } from "react"
-import { View, Text, Button, ScrollView } from "react-native"
-import { addTask, getTasks, getTasksByList } from "../../Functions/Manager"
-import Card from "../Card"
+import {
+    View,
+    Text,
+    Button,
+    ScrollView,
+    LayoutAnimation,
+    Platform,
+    UIManager,
+} from "react-native"
+import { addTask, getTasksByList } from "../../Functions/Manager"
 import { shadows } from "../../styles/shadows"
 import { BlurView } from "expo-blur"
 import hexToRgb from "../../Functions/hexToRgb"
 import styles from "./styles"
 import AddCardModal from "../Modals/AddCardModal"
+import Card from "../Card"
 
 function List({ list }) {
+    if (
+        Platform.OS === "android" &&
+        UIManager.setLayoutAnimationEnabledExperimental
+    ) {
+        UIManager.setLayoutAnimationEnabledExperimental(true)
+    }
+
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
     const [cards, setCards] = useState([])
@@ -20,13 +35,23 @@ function List({ list }) {
     }, [list.id])
 
     function addTaskAndGetTasks(task) {
-        addTask(task).then(() => {
-            getTasksByList(list.id).then((tasks) => {
-                setCards(tasks)
+        addTask(task)
+            .then(() => {
+                getTasksByList(list.id)
+                    .then((tasks) => {
+                        LayoutAnimation.configureNext(
+                            LayoutAnimation.Presets.easeInEaseOut,
+                        )
+                        setCards(tasks)
+                    })
+                    .catch((error) => {
+                        console.error("Error getting tasks: ", error)
+                    })
             })
-        })
+            .catch((error) => {
+                console.error("Error adding task: ", error)
+            })
     }
-
     return (
         <View style={[styles.container, shadows.mediumShadow]}>
             <BlurView

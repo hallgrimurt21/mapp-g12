@@ -9,11 +9,16 @@ const Modal = ({ isOpen, closeModal, title, children }) => (
         onBackButtonPress={closeModal}
         onBackdropPress={closeModal}
         style={styles.modal}
-        animationOut={"fadeOut"}>
+        animationOut={"slideOutDown"}
+        animationOutTiming={1100}
+        animationIn={"slideInUp"}
+        animationInTiming={830}
+    >
         <View style={styles.body}>
             <Text>{title}</Text>
             {children}
         </View>
+        <View style={styles.empty}></View>
     </NativeModal>
 )
 
