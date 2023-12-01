@@ -12,11 +12,13 @@ const BoardList = () => {
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
     const [editingBoard, setEditingBoard] = useState(null)
     const [boards, setBoards] = useState([])
+    const [first, setFirst] = useState(true)
     useEffect(() => {
         getBoards().then((boards) => {
             setBoards(boards)
+            setFirst(false)
         })
-    })
+    }, [first])
     function addBoardAndGetBoards (board) {
         console.log("addBoardAndGetBoards is called")
         addBoard(board).then(() => {
@@ -48,7 +50,7 @@ const BoardList = () => {
                 <TouchableOpacity
                     key={board.id}
                     style={styles.itemWithBorder}
-                    
+
                     onPress={() => {
                         console.log("board.id...", board.id)
                         console.log("board.name...", board.name)
@@ -93,7 +95,7 @@ const BoardList = () => {
                 isOpen={isAddModalOpen}
 
                 closeModal={() => setIsAddModalOpen(false)}
-                
+
                 onModalClose={(name, description, photo) => {
                     console.log("photo...", photo)
                     addBoardAndGetBoards({
