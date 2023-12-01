@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react"
 import { Animated, Pressable } from "react-native"
 import Card from "../Card"
-import { changeTask } from "../../Functions/Manager"
+import { changeTask, get1Task } from "../../Functions/Manager"
 
 function CardButton({ info: initialInfo }) {
     const [info, setInfo] = useState(initialInfo)
@@ -10,7 +10,7 @@ function CardButton({ info: initialInfo }) {
     const handlePressIn = () => {
         Animated.timing(fadeAnim, {
             toValue: 0.5,
-            duration: 200,
+            duration: 50,
             useNativeDriver: true,
         }).start()
     }
@@ -18,7 +18,7 @@ function CardButton({ info: initialInfo }) {
     const handlePressOut = () => {
         Animated.timing(fadeAnim, {
             toValue: 1,
-            duration: 200,
+            duration: 50,
             useNativeDriver: true,
         }).start()
         setInfo((prevInfo) => {
@@ -27,6 +27,9 @@ function CardButton({ info: initialInfo }) {
                 isFinished: !prevInfo.isFinished,
             }
             changeTask(updatedInfo)
+            get1Task(updatedInfo).then((task) => {
+                console.log(task)
+            })
             return updatedInfo
         })
     }
