@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import styles from "./styles"
 import { useNavigation } from "@react-navigation/native"
-import { Text, ScrollView, TouchableOpacity } from "react-native"
+import { Text, ScrollView, TouchableOpacity, ImageBackground } from "react-native"
 import EditBoardModal from "../Modals/EditBoardModal"
 import AddBoardModal from "../Modals/AddBoardModal"
 import { getBoards, addBoard, changeBoard, deleteBoard } from "../../Functions/Manager"
@@ -47,7 +47,6 @@ const BoardList = () => {
     }
     return (
         <ScrollView style={styles.container}>
-            {/* list of boards */}
             {boards.map((board) => (
                 <TouchableOpacity
                     key={board.id}
@@ -59,8 +58,17 @@ const BoardList = () => {
                         setIsEditModalOpen(true)
                         setEditingBoard(board)
                     }}
+                    onError={() => {
+                        this.setState({ uri: "https://m.media-amazon.com/images/I/81HhgSlTD1L.jpg" })
+                    }}
                 >
-                    <Text style={styles.item}>{board.name}</Text>
+                    <ImageBackground
+                        source={{ uri: board.thumbnailPhoto }}
+                        style={styles.image}
+                    >
+                        <Text style={styles.text}>{board.name}</Text>
+                        {board.description && <Text style={styles.description}>{board.description}</Text>}
+                    </ImageBackground>
                 </TouchableOpacity>
             ))}
 
@@ -72,6 +80,7 @@ const BoardList = () => {
             >
                 <Text style={styles.item}>+</Text>
             </TouchableOpacity>
+            <EditBoardModal />
             <EditBoardModal
                 isOpen={isEditModalOpen}
                 closeModal={() => setIsEditModalOpen(false)}

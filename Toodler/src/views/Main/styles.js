@@ -5,8 +5,7 @@ export default StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "darkerBlue",
-        alignItems: "center",
-        justifyContent: "center",
+        marginTop: 50,
     },
     logo: {
         width: 100,
@@ -16,6 +15,7 @@ export default StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: "bold",
+        textAlign: "center",
         // color: colors.white,
         // marginTop: metrics.baseMargin,
     },
