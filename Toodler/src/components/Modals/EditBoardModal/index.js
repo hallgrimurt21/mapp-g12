@@ -4,10 +4,16 @@ import Modal from "../../Modal"
 import styles from "./styles"
 
 const EditBoardModal = ({ isOpen, closeModal, onModalClose, board }) => {
-    const [name, onChangeName] = useState("name")
-    const [description, onChangeDescription] = useState("description")
-    const [photo, onChangePhoto] = useState("thumbnail photo")
+    const [name, onChangeName] = useState("")
+    const [description, onChangeDescription] = useState("")
+    const [photo, onChangePhoto] = useState("")
     const [deleted, setDeleted] = useState(false)
+    useEffect(() => {
+        if (deleted) {
+            setDeleted(false)
+            handleCloseReturn()
+        }
+    }, [deleted])
     useEffect(() => {
         if (board) {
             onChangeName(board.name)
@@ -21,7 +27,6 @@ const EditBoardModal = ({ isOpen, closeModal, onModalClose, board }) => {
         closeModal()
     }
     const handleCloseReturn = () => {
-        console.log(deleted)
         onModalClose(name, description, photo, deleted)
         closeModal()
     }
@@ -31,16 +36,19 @@ const EditBoardModal = ({ isOpen, closeModal, onModalClose, board }) => {
                 <TextInput
                     style={styles.input}
                     onChangeText={onChangeName}
+                    placeholder=""
                     value={name}
                 />
                 <TextInput
                     style={styles.input}
                     onChangeText={onChangeDescription}
+                    placeholder="Description"
                     value={description}
                 />
                 <TextInput
                     style={styles.input}
                     onChangeText={onChangePhoto}
+                    placeholder="Thumnmail Photo"
                     value={photo}
                 />
                 <Button
@@ -53,7 +61,6 @@ const EditBoardModal = ({ isOpen, closeModal, onModalClose, board }) => {
                     title="Delete"
                     onPress={() => {
                         setDeleted(true)
-                        handleCloseReturn()
                     }}
                 />
             </SafeAreaView>

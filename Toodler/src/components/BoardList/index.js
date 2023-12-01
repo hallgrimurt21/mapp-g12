@@ -33,9 +33,9 @@ const BoardList = () => {
             })
         })
     }
-    function deleteBoardAndGetBoards (board) {
-        console.log("deleteBoardAndGetBoards is called")
-        deleteBoard(board).then(() => {
+    function deleteBoardAndGetBoards (id) {
+        console.log("editBoardAndGetBoards is called")
+        deleteBoard(id).then(() => {
             getBoards().then((boards) => {
                 setBoards(boards)
             })
@@ -74,13 +74,13 @@ const BoardList = () => {
                 board={editingBoard}
                 onModalClose={(name, description, photo, deleted) => {
                     if (deleted) {
-                        deleteBoardAndGetBoards()
+                        deleteBoardAndGetBoards(editingBoard.id)
                     } else {
-                        console.log(name, description, photo, deleted)
                         editBoardAndGetBoards({
                             name,
                             description,
-                            photo,
+                            thumbnailPhoto: photo,
+                            id: editingBoard.id,
                         })
                     }
                 }}
