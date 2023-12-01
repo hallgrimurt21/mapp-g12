@@ -30,7 +30,7 @@ export const getTasksByList = async (listId) => {
     const tasksByList = tasks.filter((task) => task.listId === listId)
     return tasksByList
 }
-/////////////////////LISTS////////////////////////
+///////////////////// LISTS ////////////////////////////
 
 export const getLists = async () => {
     const lists = await getX("lists")
@@ -53,7 +53,6 @@ export const get1List = async (key) => {
     const list = await get1X("lists", key)
     return list
 }
-
 
 export const getListsByBoard = async (boardId) => {
     const lists = await getX("lists")

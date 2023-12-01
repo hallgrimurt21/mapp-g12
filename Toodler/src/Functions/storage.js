@@ -23,7 +23,8 @@ export const changeX = async (varb, key, value) => {
 
 export const addX = async (varb, value) => {
     const items = await getX(varb)
-    value.id = items.length + 1 //
+    const maxId = Math.max(...items.map((item) => item.id), 0)
+    value.id = maxId + 1
     ////////////////////////////add id to value
     items.push(value)
     await AsyncStorage.setItem(varb, JSON.stringify(items))
