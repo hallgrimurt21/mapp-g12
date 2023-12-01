@@ -54,6 +54,12 @@ export const get1List = async (key) => {
     return list
 }
 
+
+export const getListsByBoard = async (boardId) => {
+    const lists = await getX("lists")
+    const listsByBoard = lists.filter((list) => list.boardId === boardId)
+    return listsByBoard
+}
 /////////////////////Boards////////////////////////
 
 export const getBoards = async () => {
