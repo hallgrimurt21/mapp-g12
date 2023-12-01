@@ -2,7 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage"
 import React from "react"
 
 export const storeData = async (data) => {
-    for (let key in data) {
+    for (const key in data) {
         await AsyncStorage.setItem(key, JSON.stringify(data[key]))
     }
 }
@@ -23,8 +23,9 @@ export const changeX = async (varb, key, value) => {
 
 export const addX = async (varb, value) => {
     const items = await getX(varb)
-    value.id = items.length + 1 //
-    ////////////////////////////add id to value
+    ///////////////////add id to value
+    const maxId = Math.max(...items.map((item) => item.id), 0)
+    value.id = maxId + 1
     items.push(value)
     await AsyncStorage.setItem(varb, JSON.stringify(items))
 }

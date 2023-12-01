@@ -24,7 +24,6 @@ function List({ list }) {
         UIManager.setLayoutAnimationEnabledExperimental(true)
     }
 
-    const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
     const [cards, setCards] = useState([])
 
