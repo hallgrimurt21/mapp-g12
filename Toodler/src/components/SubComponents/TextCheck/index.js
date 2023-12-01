@@ -7,23 +7,24 @@ import { changeTask } from "../../../Functions/Manager"
 
 function TextCheck({ info }) {
     const [isChecked, setChecked] = useState(info.isFinished)
+    const [task, setTask] = useState(info)
+
+    ////////////////update info in component
+    useEffect(() => {
+        setChecked(info.isFinished)
+        setTask(info)
+    }, [info])
+
     ////////////////update the task's isFinished value in storage
     useEffect(() => {
         info.isFinished = isChecked
         changeTask(info)
     }, [isChecked])
 
-    //////////////check if the isFinished value is updated
-    // useEffect(() => {
-    //     get1X("tasks", info.id).then((task) => {
-    //         console.log(task)
-    //     })
-    // }, [isChecked])
-
     /////////////////////////////////
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>{info.name}</Text>
+            <Text style={styles.text}>{task.name}</Text>
             <Checkbox
                 style={styles.checkbox}
                 value={isChecked}

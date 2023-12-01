@@ -32,6 +32,9 @@ const styles = StyleSheet.create({
     checkboxText: {
         marginLeft: 8,
     },
+    description: {
+        color: "grey",
+    },
 })
 
 export default styles

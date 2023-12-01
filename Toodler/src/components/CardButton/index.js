@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import Card from "../Card"
-import { Pressable } from "react-native"
+import { View, Text, Animated, Pressable } from "react-native"
 import { changeTask, get1Task } from "../../Functions/Manager"
 
 function CardButton({ info }) {
     const [cardInfo, setCardInfo] = useState(info)
-    const [modalVisible, setModalVisible] = useState(false)
 
     useEffect(() => {
         setCardInfo(info)
