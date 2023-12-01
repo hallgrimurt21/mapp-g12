@@ -1,13 +1,31 @@
 import React, { useEffect, useState } from "react"
-import { View, Text, Button, ScrollView } from "react-native"
-import { getTasksByList } from "../../Functions/Manager"
+import {
+    View,
+    Text,
+    Button,
+    ScrollView,
+    LayoutAnimation,
+    Platform,
+    UIManager,
+} from "react-native"
+import { addTask, getTasksByList } from "../../Functions/Manager"
 import Card from "../Card"
 import { shadows } from "../../styles/shadows"
 import { BlurView } from "expo-blur"
 import hexToRgb from "../../Functions/hexToRgb"
 import styles from "./styles"
+import AddCardModal from "../Modals/AddCardModal"
 
 function List({ list }) {
+    if (
+        Platform.OS === "android" &&
+        UIManager.setLayoutAnimationEnabledExperimental
+    ) {
+        UIManager.setLayoutAnimationEnabledExperimental(true)
+    }
+
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+    const [isAddModalOpen, setIsAddModalOpen] = useState(false)
     const [cards, setCards] = useState([])
 
     useEffect(() => {
@@ -16,6 +34,24 @@ function List({ list }) {
         })
     }, [list.id])
 
+    function addTaskAndGetTasks(task) {
+        addTask(task)
+            .then(() => {
+                getTasksByList(list.id)
+                    .then((tasks) => {
+                        LayoutAnimation.configureNext(
+                            LayoutAnimation.Presets.easeInEaseOut,
+                        )
+                        setCards(tasks)
+                    })
+                    .catch((error) => {
+                        console.error("Error getting tasks: ", error)
+                    })
+            })
+            .catch((error) => {
+                console.error("Error adding task: ", error)
+            })
+    }
     return (
         <View style={[styles.container, shadows.mediumShadow]}>
             <BlurView
@@ -35,9 +71,27 @@ function List({ list }) {
                     ))}
 
                     <View style={styles.adder}>
-                        <Button style={styles.butRad} title="Add Task" />
+                        <Button
+                            style={styles.butRad}
+                            title="Add Task"
+                            onPress={() => {
+                                setIsAddModalOpen(true)
+                            }}
+                        />
                     </View>
                 </ScrollView>
+                <AddCardModal
+                    isOpen={isAddModalOpen}
+                    closeModal={() => setIsAddModalOpen(false)}
+                    onModalClose={(name, description) => {
+                        addTaskAndGetTasks({
+                            name: name,
+                            description: description,
+                            listId: list.id,
+                        })
+                        // log the name and description
+                    }}
+                />
             </BlurView>
         </View>
     )
