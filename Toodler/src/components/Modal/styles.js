@@ -8,16 +8,18 @@ export default StyleSheet.create({
     },
     body: {
         alignItems: "center",
+        justifyContent: "flex-start",
         width: deviceWidth,
         backgroundColor: "white",
-        borderTopLeftRadius: 10,
-        borderTopRightRadius: 10,
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius: 10,
         marginBottom: 0,
-        flexGrow: 0.3,
+        flexGrow: 0.6,
         overflow: "hidden",
+        paddingBottom: 10,
     },
     empty: {
-        marginTop: -deviceHeight * 0.2,
+        marginBottom: -deviceHeight * 0.2,
         backgroundColor: "white",
     },
 })
