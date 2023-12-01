@@ -9,12 +9,12 @@ import {
 } from "react-native"
 import Modal from "../../Modal"
 import styles from "./styles"
-import { grey, black, } from "../../../styles/colors"
+import grey from "../../../styles/colors"
 import { shadows } from "../../../styles/shadows"
 
 const AddListModal = ({ isOpen, closeModal, onModalClose }) => {
     const [name, onChangeName] = React.useState("")
-    const [description, onChangeDescription] = React.useState("")
+    const [Color, onChangeColor] = React.useState("")
     const titleStyle = [styles.title, shadows.smallShadow]
     const modalStyle = [styles.modal, shadows.smallShadow]
     const buttonStyle = [styles.Button, shadows.smallShadow]
@@ -23,13 +23,13 @@ const AddListModal = ({ isOpen, closeModal, onModalClose }) => {
     const handleClose = () => {
         if (name === "") {
             onChangeName("")
-            onChangeDescription("")
+            onChangeColor("")
             closeModal()
         } else {
-            onModalClose(name, description)
+            onModalClose(name, Color)
             closeModal()
             onChangeName("") // clear the name input
-            onChangeDescription("") // clear the description input
+            onChangeColor("") // clear the Color input
         }
     }
     return (
@@ -47,8 +47,8 @@ const AddListModal = ({ isOpen, closeModal, onModalClose }) => {
                     />
                     <TextInput
                         style={inputStyle}
-                        onChangeText={onChangeDescription}
-                        placeholder={"Description(optional)"}
+                        onChangeText={onChangeColor}
+                        placeholder={"Color(optional)"}
                         placeholderTextColor={grey}
                     />
                     <TouchableOpacity
