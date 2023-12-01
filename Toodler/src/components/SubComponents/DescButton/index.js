@@ -4,6 +4,7 @@ import styles from "./styles"
 
 function DescButton({ info }) {
     const [isPressed, setIsPressed] = useState(false)
+
     return (
         <View style={styles.container}>
             <Text style={styles.description}>{info.description}</Text>
