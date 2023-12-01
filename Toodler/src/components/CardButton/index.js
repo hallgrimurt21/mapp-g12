@@ -1,22 +1,29 @@
-import React, { useRef, useEffect, useState } from "react"
-import { Animated, Pressable } from "react-native"
+import React, { useState, useEffect, useRef } from "react"
 import Card from "../Card"
+import { View, Text, Animated, Pressable } from "react-native"
 import { changeTask, get1Task } from "../../Functions/Manager"
 
 function CardButton({ info }) {
-    const [card, setCard] = useState(Info)
+    const [cardInfo, setCardInfo] = useState(info)
     const fadeAnim = useRef(new Animated.Value(1)).current
 
-    const handlePressIn = () => {
-        Animated.timing(fadeAnim, {
-            toValue: 0.5,
-            duration: 50,
-            useNativeDriver: true,
-        }).start()
+    useEffect(() => {
+        setCardInfo(info)
+    }, [info])
+
+    const handlePress = () => {
+        const updatedInfo = { ...cardInfo, isFinished: !cardInfo.isFinished }
+        changeTask(updatedInfo).then(() => {
+            get1Task(updatedInfo.id).then((task) => {
+                console.log(task)
+            })
+            setCardInfo(updatedInfo)
+        })
     }
+
     return (
-        <Pressable>
-            <Card info={card} />
+        <Pressable onPress={handlePress}>
+            <Card info={cardInfo} />
         </Pressable>
     )
 }
