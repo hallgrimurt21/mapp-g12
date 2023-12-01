@@ -1,5 +1,5 @@
 import { Animated } from "react-native"
-import React, { useRef, useEffect } from "react"
+import React, { useRef, useEffect, useState } from "react"
 import { shadows } from "../../styles/shadows"
 import styles from "./styles"
 import DescButton from "../SubComponents/DescButton"
@@ -7,6 +7,12 @@ import TextCheck from "../SubComponents/TextCheck"
 
 export default function Card({ info }) {
     const fadeAnim = useRef(new Animated.Value(0)).current // Initial value for opacity: 0
+
+    const [card, setCard] = useState(info)
+
+    useEffect(() => {
+        setCard(info)
+    }, [info])
 
     useEffect(() => {
         Animated.spring(fadeAnim, {
@@ -24,8 +30,8 @@ export default function Card({ info }) {
                 { opacity: fadeAnim },
             ]}
         >
-            <TextCheck style={styles.texCe} info={info} />
-            <DescButton style={styles.descButt} info={info} />
+            <TextCheck style={styles.texCe} info={card} />
+            <DescButton style={styles.descButt} info={card} />
         </Animated.View>
     )
 }
