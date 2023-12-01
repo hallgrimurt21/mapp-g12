@@ -12,37 +12,28 @@ const BoardList = () => {
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
     const [editingBoard, setEditingBoard] = useState(null)
     const [boards, setBoards] = useState([])
-    const [first, setFirst] = useState(true)
+    const [refresh, setRefresh] = useState(true)
 
     useEffect(() => {
         getBoards().then((boards) => {
             setBoards(boards)
-            setFirst(false)
+            setRefresh(false)
         })
-    }, [first])
+    }, [refresh])
 
     function addBoardAndGetBoards (board) {
-        console.log("addBoardAndGetBoards is called")
         addBoard(board).then(() => {
-            getBoards().then((boards) => {
-                setBoards(boards)
-            })
+            setRefresh(true)
         })
     }
     function editBoardAndGetBoards (board) {
-        console.log("editBoardAndGetBoards is called")
         changeBoard(board).then(() => {
-            getBoards().then((boards) => {
-                setBoards(boards)
-            })
+            setRefresh(true)
         })
     }
     function deleteBoardAndGetBoards (id) {
-        console.log("editBoardAndGetBoards is called")
         deleteBoard(id).then(() => {
-            getBoards().then((boards) => {
-                setBoards(boards)
-            })
+            setRefresh(true)
         })
     }
     return (
@@ -57,9 +48,6 @@ const BoardList = () => {
                     onLongPress={() => {
                         setIsEditModalOpen(true)
                         setEditingBoard(board)
-                    }}
-                    onError={() => {
-                        this.setState({ uri: "https://m.media-amazon.com/images/I/81HhgSlTD1L.jpg" })
                     }}
                 >
                     <ImageBackground
