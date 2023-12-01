@@ -9,13 +9,12 @@ import {
     UIManager,
 } from "react-native"
 import { addTask, getTasksByList } from "../../Functions/Manager"
-import Card from "../Card"
 import { shadows } from "../../styles/shadows"
 import { BlurView } from "expo-blur"
 import hexToRgb from "../../Functions/hexToRgb"
 import styles from "./styles"
 import AddCardModal from "../Modals/AddCardModal"
-//
+import Card from "../Card"
 
 function List({ list }) {
     if (

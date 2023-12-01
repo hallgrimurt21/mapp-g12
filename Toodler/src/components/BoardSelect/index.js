@@ -1,38 +1,35 @@
 import Lister from "../Lister"
-import React from "react"
+import { React, useState, useEffect } from "react"
 import { View, ImageBackground } from "react-native"
-import { get1Board, getBoards } from "../../Functions/Manager"
-// import data from "../../resources/data.json"
+import { get1Board,getBoards } from "../../Functions/Manager"
 import { shadows } from "../../styles/shadows"
 import PrettyText from "../SubComponents/PrettyText"
 import styles from "./styles"
-import { ScrollView } from "react-native-gesture-handler"
-import { useState, useEffect } from "react"
 
 function BoardSelect({ ider }) {
     // replace with the ID of the board you want to display
 
     // const board = data.boards.find((board) => board.id === ider)
-    // console.log("board in BoardSelect", board)
-
-    const [boards, setBoards] = useState([])
+    const [board, setBoard] = useState([])
     useEffect(() => {
-        get1Board(ider).then((boards) => {
-            setBoards(boards)
-        })
-    })
-
-
+        get1Board(ider)
+            .then((board) => {
+                setBoard(board)
+            })
+            .catch((error) => {
+                console.error("Error getting board: ", error)
+            })
+    }, [ider])
 
     return (
         <ImageBackground
-            source={{ uri: boards.thumbnailPhoto }} // replace with the path to your image
+            source={{ uri: board.thumbnailPhoto }} // replace with the path to your image
             style={styles.boardback}
         >
             <View style={[styles.title, shadows.smallShadow]}>
-                <PrettyText text={boards.name} />
+                <PrettyText text={board.name} />
             </View>
-            <Lister board={boards} />
+            <Lister board={board} />
         </ImageBackground>
     )
 }
