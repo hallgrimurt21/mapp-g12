@@ -1,7 +1,7 @@
 import Lister from "../Lister"
-import React from "react"
+import { React, useState, useEffect } from "react"
 import { View, ImageBackground } from "react-native"
-import data from "../../resources/data.json"
+import { get1Board,getBoards } from "../../Functions/Manager"
 import { shadows } from "../../styles/shadows"
 import PrettyText from "../SubComponents/PrettyText"
 import styles from "./styles"
@@ -9,7 +9,17 @@ import styles from "./styles"
 function BoardSelect({ ider }) {
     // replace with the ID of the board you want to display
 
-    const board = data.boards.find((board) => board.id === ider)
+    // const board = data.boards.find((board) => board.id === ider)
+    const [board, setBoard] = useState([])
+    useEffect(() => {
+        get1Board(ider)
+            .then((board) => {
+                setBoard(board)
+            })
+            .catch((error) => {
+                console.error("Error getting board: ", error)
+            })
+    }, [ider])
 
     return (
         <ImageBackground

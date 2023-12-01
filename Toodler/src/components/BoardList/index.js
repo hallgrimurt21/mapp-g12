@@ -6,17 +6,23 @@ import EditBoardModal from "../Modals/EditBoardModal"
 import AddBoardModal from "../Modals/AddBoardModal"
 import { getBoards, addBoard, changeBoard, deleteBoard } from "../../Functions/Manager"
 
+
 const BoardList = () => {
     const { navigate } = useNavigation()
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
     const [editingBoard, setEditingBoard] = useState(null)
     const [boards, setBoards] = useState([])
+    const [first, setFirst] = useState(true)
+
+
     useEffect(() => {
         getBoards().then((boards) => {
             setBoards(boards)
+            setFirst(false)
         })
-    })
+    },[first])
+
     function addBoardAndGetBoards (board) {
         console.log("addBoardAndGetBoards is called")
         addBoard(board).then(() => {
@@ -92,7 +98,7 @@ const BoardList = () => {
                     addBoardAndGetBoards({
                         name,
                         description,
-                        photo,
+                        thumbnailPhoto: photo,
                     })
                 }}
             />
