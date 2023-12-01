@@ -7,13 +7,13 @@ function DescButton({ info }) {
     return (
         <View style={styles.container}>
             <Text style={styles.description}>{info.description}</Text>
-            <Pressable
+            {/* <Pressable
                 style={[styles.button, isPressed && styles.buttonPressed]}
                 onPressIn={() => setIsPressed(true)}
                 onPressOut={() => setIsPressed(false)}
             >
                 <Text style={styles.buttonText}>...</Text>
-            </Pressable>
+            </Pressable> */}
         </View>
     )
 }
