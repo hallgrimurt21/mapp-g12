@@ -47,7 +47,7 @@ export default StyleSheet.create({
         },
     },
     title: {
-        // marginTop: 15,
+        marginTop: 15,
         width: Math.min(deviceWidth * 0.98, 400),
         backgroundColor: "white",
         borderRadius: 8,
