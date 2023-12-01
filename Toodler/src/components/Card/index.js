@@ -5,7 +5,7 @@ import styles from "./styles"
 import DescButton from "../SubComponents/DescButton"
 import TextCheck from "../SubComponents/TextCheck"
 
-export default function Card({ info }) {
+function Card({ info }) {
     const fadeAnim = useRef(new Animated.Value(0)).current // Initial value for opacity: 0
 
     useEffect(() => {
@@ -29,3 +29,5 @@ export default function Card({ info }) {
         </Animated.View>
     )
 }
+
+export default Card
