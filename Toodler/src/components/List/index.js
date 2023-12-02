@@ -14,7 +14,6 @@ import { BlurView } from "expo-blur"
 import hexToRgb from "../../Functions/hexToRgb"
 import styles from "./styles"
 import AddCardModal from "../Modals/AddCardModal"
-import Card from "../Card"
 import CardButton from "../CardButton"
 
 function List({ list }) {

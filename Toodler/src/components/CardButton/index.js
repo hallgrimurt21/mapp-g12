@@ -1,12 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
 import Card from "../Card"
-import { View, Text, Animated, Pressable } from "react-native"
-import {
-    changeTask,
-    get1Task,
-    deleteTask,
-    getTasks,
-} from "../../Functions/Manager"
+import { Pressable } from "react-native"
+import { changeTask, get1Task, deleteTask } from "../../Functions/Manager"
 import EditCardModal from "../Modals/EditCardModal"
 
 function CardButton({ info, onDelete }) {
