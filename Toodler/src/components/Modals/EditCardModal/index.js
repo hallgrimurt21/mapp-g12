@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import {
     TextInput,
     SafeAreaView,
@@ -12,25 +12,39 @@ import { grey } from "../../../styles/colors"
 import { shadows } from "../../../styles/shadows"
 
 const EditCardModal = ({ card, isOpen, closeModal, onModalClose }) => {
-    const [name, onChangeName] = useState(card.name)
-    const [description, onChangeDescription] = useState(card.description)
+    const [name, onChangeName] = useState(card.name) // for name changing
+    const [description, onChangeDescription] = useState(card.description) // for description changing
+    const [deleted, setDeleted] = useState(false) ///// For DELETING a card /////
+    const [listId, setListId] = useState(card.listId) ///// For moving a card /////
+
+    //////////// STYLES ////////////
     const titleStyle = [styles.title, shadows.smallShadow]
     const modalStyle = [styles.modal, shadows.smallShadow]
     const buttonStyle = [styles.Button, shadows.smallShadow]
     const inputStyle = [styles.input, shadows.smallShadow]
 
+    ///////// For returning info on deleting / editing info /////////
     const handleClose = () => {
         if (name === "") {
+            onModalClose(card.name, card.description, deleted, card.listId)
             onChangeName("")
             onChangeDescription("")
             closeModal()
         } else {
-            onModalClose(name, description)
+            onModalClose(name, description, deleted, listId)
             closeModal()
             onChangeName("") // clear the name input
             onChangeDescription("") // clear the description input
         }
     }
+
+    /////// For deleting a card live ///////
+    useEffect(() => {
+        if (deleted) {
+            handleClose()
+        }
+    }, [deleted])
+
     return (
         <Modal isOpen={isOpen} closeModal={handleClose}>
             <SafeAreaView style={titleStyle}>
@@ -54,13 +68,28 @@ const EditCardModal = ({ card, isOpen, closeModal, onModalClose }) => {
                         }
                         placeholderTextColor={grey}
                     />
-                    <TouchableOpacity
-                        style={buttonStyle}
-                        activeOpacity={0.5}
-                        onPress={handleClose}
-                    >
-                        <Text>Save</Text>
-                    </TouchableOpacity>
+                    <TextInput
+                        style={inputStyle}
+                        onChangeText={setListId}
+                        placeholder={card.listId.toString()}
+                        placeholderTextColor={grey}
+                    />
+                    <View style={styles.buttonPart}>
+                        <TouchableOpacity
+                            style={buttonStyle}
+                            activeOpacity={0.5}
+                            onPress={handleClose}
+                        >
+                            <Text>Save</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.deleteButton}
+                            activeOpacity={0.5}
+                            onPress={() => setDeleted(true)}
+                        >
+                            <Text style={styles.deleteText}>Delete</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </SafeAreaView>
         </Modal>

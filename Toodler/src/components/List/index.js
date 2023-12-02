@@ -14,10 +14,9 @@ import { BlurView } from "expo-blur"
 import hexToRgb from "../../Functions/hexToRgb"
 import styles from "./styles"
 import AddCardModal from "../Modals/AddCardModal"
-import Card from "../Card"
 import CardButton from "../CardButton"
 
-function List({ list }) {
+function List({ list, onListChange, changed }) {
     if (
         Platform.OS === "android" &&
         UIManager.setLayoutAnimationEnabledExperimental
@@ -25,15 +24,37 @@ function List({ list }) {
         UIManager.setLayoutAnimationEnabledExperimental(true)
     }
 
+    ///////// opening modal and setting cards /////////
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
     const [cards, setCards] = useState([])
 
+    //////// For adding a task ////////
     useEffect(() => {
         getTasksByList(list.id).then((tasks) => {
             setCards(tasks)
         })
     }, [list.id])
 
+    ///// Deleting a task /////
+    const handleDelete = (id) => {
+        setCards(cards.filter((card) => card.id !== id))
+    }
+    const handleMove = (booler) => {
+        if (booler) {
+            getTasksByList(list.id).then((tasks) => {
+                setCards(tasks)
+                onListChange(true)
+            })
+        }
+    }
+    useEffect(() => {
+        if (changed) {
+            getTasksByList(list.id).then((tasks) => {
+                setCards(tasks)
+            })
+        }
+    }, [changed, list.id])
+    ////////// add task to asyncStorage and get tasks from asyncStorage+update //////////
     function addTaskAndGetTasks(task) {
         addTask(task)
             .then(() => {
@@ -67,7 +88,13 @@ function List({ list }) {
                 </View>
                 <ScrollView style={styles.carder}>
                     {cards.map((card) => (
-                        <CardButton key={card.id} info={card} />
+                        ////////// Card item as a button //////////
+                        <CardButton
+                            key={card.id}
+                            info={card}
+                            onDelete={handleDelete} //////// Deleting a task ////////
+                            cardMoved={handleMove} //////// Moving a task ////////
+                        />
                     ))}
 
                     <View style={styles.adder}>

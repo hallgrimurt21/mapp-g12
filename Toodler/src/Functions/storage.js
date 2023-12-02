@@ -40,6 +40,6 @@ export const deleteX = async (varb, key) => {
 
 export const get1X = async (varb, key) => {
     const items = await getX(varb)
-    const item = items.filter((item) => item.id === key)[0]
+    const item = items.filter((item) => item.id == key)[0]
     return item
 }
