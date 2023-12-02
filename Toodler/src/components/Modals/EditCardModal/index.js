@@ -49,7 +49,6 @@ const EditCardModal = ({ card, isOpen, closeModal, onModalClose }) => {
     }, [deleted])
 
     useEffect(() => {
-        console.log(card.listId)
         getNeighbourLists(card.listId).then((neighbourLists) => {
             setNeighbourLists(neighbourLists)
         })
