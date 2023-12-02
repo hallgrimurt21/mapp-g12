@@ -1,60 +1,85 @@
 import React, { useState, useEffect } from "react"
-import { TextInput, SafeAreaView, Button } from "react-native"
+import { TextInput, SafeAreaView, Button, TouchableOpacity, Text } from "react-native"
 import Modal from "../../Modal"
 import styles from "./styles"
+import { Picker } from '@react-native-picker/picker';
+import { colors } from "../../../styles/colors"
+import { shadows } from "../../../styles/shadows"
 
-const EditBoardModal = ({ isOpen, closeModal, onModalClose, board }) => {
-    const [name, onChangeName] = useState("")
-    const [description, onChangeDescription] = useState("")
-    const [photo, onChangePhoto] = useState("")
-    const [deleted, setDeleted] = useState(false)
+const EditListModal = ({ isOpen, closeModal, onModalClose, list }) => {
+    const [name, setName] = useState("")
+    const [color, setColor] = useState("")
+    const [deleted, setDeleted] = useState(false)//?
+    const [isPickerVisible, setPickerVisible] = useState(false)
+    const inputStyle = [styles.input, shadows.smallShadow]
+    const [colorName, setColorName] = useState("");
+    const onChangeName = (text) => {
+        setName(text);
+      };
+    const onChangeColor = (value) => {
+        setColor(value);
+        setColorName(Object.keys(colors)[Object.values(colors).indexOf(value)]);
+      };
+
     useEffect(() => {
         if (deleted) {
             setDeleted(false)
             handleCloseReturn()
         }
     }, [deleted])
+
     useEffect(() => {
-        if (board) {
-            onChangeName(board.name)
-            if (board.description) {
-                onChangeDescription(board.description)
-            }
-            onChangePhoto(board.thumbnailPhoto)
+        if (list) {
+            onChangeName(list.name)
+            onChangeColor(list.color)
         }
-    }, [board])
+    }, [list])
+
     const handleClose = () => {
-        closeModal()
-    }
-    const handleCloseReturn = () => {
-        onModalClose(name, description, photo, deleted)
-        closeModal()
-    }
+        setName("");
+        setColor("");
+        closeModal();
+      };
+
+      const handleCloseReturn = () => {
+        if (deleted) {
+          onModalClose(name, color, deleted);
+        } else {
+        if (name && color) {
+          onModalClose(name, color);
+        }
+        setName("");
+        setColor("");
+        closeModal();}
+      };
+
     return (
         <Modal isOpen={isOpen} closeModal={handleClose} title="Edit">
             <SafeAreaView>
                 <TextInput
                     style={styles.input}
                     onChangeText={onChangeName}
-                    placeholder=""
+                    placeholder="List Name"
+                    placeholderTextColor={colors.grey}
                     value={name}
                 />
-                <TextInput
-                    style={styles.input}
-                    onChangeText={onChangeDescription}
-                    placeholder="Description"
-                    value={description}
-                />
-                <TextInput
-                    style={styles.input}
-                    onChangeText={onChangePhoto}
-                    placeholder="Thumnmail Photo"
-                    value={photo}
-                />
+                <TouchableOpacity onPress={() => setPickerVisible(true)}>
+                    <Text style={inputStyle}>{colorName || "Color"}</Text>
+                </TouchableOpacity>
+                {isPickerVisible && (
+                    <Picker
+                        selectedValue={color}
+                        onValueChange={onChangeColor}
+                    >
+                        {Object.keys(colors).map((key) => (
+                            <Picker.Item label={key} value={colors[key]} key={key} />
+                        ))}
+                    </Picker>
+                )}
                 <Button
                     style={styles.input}
                     title="Accept"
-                    onPress={handleCloseReturn}
+                    onPress={() => handleCloseReturn(name, color)}
                 />
                 <Button
                     style={styles.input}
@@ -68,4 +93,4 @@ const EditBoardModal = ({ isOpen, closeModal, onModalClose, board }) => {
     )
 }
 
-export default EditBoardModal
+export default EditListModal

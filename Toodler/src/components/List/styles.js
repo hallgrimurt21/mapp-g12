@@ -44,6 +44,13 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         maxHeight: deviceHeight * 0.68,
     },
+    editButton: {
+        //With three dots to the right side of the container
+        alignSelf: "flex-end",
+        
+        
+
+    },
 })
 
 export default styles

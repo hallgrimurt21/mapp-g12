@@ -3,7 +3,7 @@ import { View, Button, ScrollView } from "react-native"
 import List from "../List"
 import styles from "./styles"
 import { shadows } from "../../styles/shadows"
-import { getListsByBoard, addList } from "../../Functions/Manager"
+import { getListsByBoard, addList, changeList } from "../../Functions/Manager"
 import AddListModal from "../Modals/AddListModal" // Import the AddListModal component
 
 function Lister({ board }) {
@@ -37,15 +37,18 @@ function Lister({ board }) {
             })
     }
 
+
     return (
         <>
             <ScrollView style={styles.lister} horizontal={true} pagingEnabled>
                 {lists.map((list) => (
+                     <React.Fragment key={list.id}>
                     <List
-                        key={list.id}
+                        board = {board}
                         list={list}
                         style={shadows.mediumShadow}
                     />
+                    </React.Fragment>
                 ))}
             </ScrollView>
             <View>
