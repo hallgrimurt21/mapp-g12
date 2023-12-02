@@ -1,7 +1,7 @@
 import Lister from "../Lister"
 import { React, useState, useEffect } from "react"
 import { View, ImageBackground } from "react-native"
-import { get1Board,getBoards } from "../../Functions/Manager"
+import { get1Board } from "../../Functions/Manager"
 import { shadows } from "../../styles/shadows"
 import PrettyText from "../SubComponents/PrettyText"
 import styles from "./styles"

@@ -15,6 +15,7 @@ import hexToRgb from "../../Functions/hexToRgb"
 import styles from "./styles"
 import AddCardModal from "../Modals/AddCardModal"
 import Card from "../Card"
+import CardButton from "../CardButton"
 
 function List({ list }) {
     if (
@@ -24,7 +25,6 @@ function List({ list }) {
         UIManager.setLayoutAnimationEnabledExperimental(true)
     }
 
-    const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
     const [cards, setCards] = useState([])
 
@@ -67,7 +67,7 @@ function List({ list }) {
                 </View>
                 <ScrollView style={styles.carder}>
                     {cards.map((card) => (
-                        <Card key={card.id} info={card} />
+                        <CardButton key={card.id} info={card} />
                     ))}
 
                     <View style={styles.adder}>

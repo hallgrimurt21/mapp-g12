@@ -3,17 +3,14 @@ import { View, Text, Pressable } from "react-native"
 import styles from "./styles"
 
 function DescButton({ info }) {
-    const [isPressed, setIsPressed] = useState(false)
+    const [descInfo, setDescInfo] = useState(info)
+
+    useEffect(() => {
+        setDescInfo(info)
+    }, [info])
     return (
         <View style={styles.container}>
-            <Text style={styles.description}>{info.description}</Text>
-            <Pressable
-                style={[styles.button, isPressed && styles.buttonPressed]}
-                onPressIn={() => setIsPressed(true)}
-                onPressOut={() => setIsPressed(false)}
-            >
-                <Text style={styles.buttonText}>...</Text>
-            </Pressable>
+            <Text style={styles.description}>{descInfo}</Text>
         </View>
     )
 }

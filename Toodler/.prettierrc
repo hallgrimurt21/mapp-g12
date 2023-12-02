@@ -1,5 +1,8 @@
 {
     "tabWidth": 4,
     "semi": false,
-    "arrowParens": "always"
+    "arrowParens": "always",
+    "spaceBeforeFunctionParent": true,
+    "trailingComma": "all",
+    "bracketSpacing": true
 }
