@@ -12,14 +12,17 @@ import { grey } from "../../../styles/colors"
 import { shadows } from "../../../styles/shadows"
 
 const EditCardModal = ({ card, isOpen, closeModal, onModalClose }) => {
-    const [name, onChangeName] = useState(card.name)
-    const [description, onChangeDescription] = useState(card.description)
-    const [deleted, setDeleted] = useState(false)
+    const [name, onChangeName] = useState(card.name) // for name changing
+    const [description, onChangeDescription] = useState(card.description) // for description changing
+    const [deleted, setDeleted] = useState(false) ///// For DELETING a card /////
+
+    //////////// STYLES ////////////
     const titleStyle = [styles.title, shadows.smallShadow]
     const modalStyle = [styles.modal, shadows.smallShadow]
     const buttonStyle = [styles.Button, shadows.smallShadow]
     const inputStyle = [styles.input, shadows.smallShadow]
 
+    ///////// For returning info on deleting / editing info /////////
     const handleClose = () => {
         if (name === "") {
             onModalClose(name, description, deleted)
@@ -34,11 +37,13 @@ const EditCardModal = ({ card, isOpen, closeModal, onModalClose }) => {
         }
     }
 
+    /////// For deleting a card live ///////
     useEffect(() => {
         if (deleted) {
             handleClose()
         }
     }, [deleted])
+
     return (
         <Modal isOpen={isOpen} closeModal={handleClose}>
             <SafeAreaView style={titleStyle}>
