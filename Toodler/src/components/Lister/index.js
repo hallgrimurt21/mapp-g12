@@ -11,6 +11,11 @@ function Lister({ board }) {
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
     const [changed, setChanged] = useState(false)
 
+    const handleDeleteList = (listId) => {
+        setLists(lists.filter((list) => list.id !== listId));
+      };
+
+
     useEffect(() => {
         getListsByBoard(board.id)
             .then((lists) => {
@@ -28,6 +33,7 @@ function Lister({ board }) {
                 getListsByBoard(board.id)
                     .then((lists) => {
                         setLists(lists)
+                        console.log(lists)
                     })
                     .catch((error) => {
                         console.error("Error getting lists: ", error)
@@ -36,6 +42,7 @@ function Lister({ board }) {
             .catch((error) => {
                 console.error("Error adding list: ", error)
             })
+        setChanged(true)
     }
 
     /////////// calling useEffect for moving card /////////////
@@ -66,6 +73,7 @@ function Lister({ board }) {
                     <List
                         key={list.id}
                         list={list}
+                        onDelete={handleDeleteList}
                         onListChange={handleChange}
                         style={shadows.mediumShadow}
                         changed={changed}

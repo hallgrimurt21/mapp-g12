@@ -44,6 +44,23 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         maxHeight: deviceHeight * 0.68,
     },
+    editAndDelete: {
+        //I want this to be at the top right corner of the container in line with the titler
+        backgroundColor: white,
+        borderBottomLeftRadius: 5,
+        alignSelf: "flex-end",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        flexWrap: "wrap",
+    },
+    button: {
+        marginRight: 5,
+    },
+    over: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        flexWrap: "wrap",
+    },
 })
 
 export default styles

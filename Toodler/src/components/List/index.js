@@ -7,16 +7,19 @@ import {
     LayoutAnimation,
     Platform,
     UIManager,
+    Pressable,
 } from "react-native"
-import { addTask, getTasksByList } from "../../Functions/Manager"
+import { addTask, getTasksByList, changeList } from "../../Functions/Manager"
 import { shadows } from "../../styles/shadows"
 import { BlurView } from "expo-blur"
 import hexToRgb from "../../Functions/hexToRgb"
 import styles from "./styles"
 import AddCardModal from "../Modals/AddCardModal"
+import EditListModal from "../Modals/EditListModal"
 import CardButton from "../CardButton"
+import { deleteList } from "../../Functions/Manager"
 
-function List({ list, onListChange, changed }) {
+function List({ list, onListChange, changed, onDelete }) {
     if (
         Platform.OS === "android" &&
         UIManager.setLayoutAnimationEnabledExperimental
@@ -26,6 +29,7 @@ function List({ list, onListChange, changed }) {
 
     ///////// opening modal and setting cards /////////
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const [cards, setCards] = useState([])
 
     //////// For adding a task ////////
@@ -39,6 +43,12 @@ function List({ list, onListChange, changed }) {
     const handleDelete = (id) => {
         setCards(cards.filter((card) => card.id !== id))
     }
+
+    const handleDeleteList = () => {
+        deleteList(list.id)
+        onDelete(list.id)
+    }
+
     const handleMove = (booler) => {
         if (booler) {
             getTasksByList(list.id).then((tasks) => {
@@ -73,6 +83,22 @@ function List({ list, onListChange, changed }) {
                 console.error("Error adding task: ", error)
             })
     }
+
+    const handleEditModalOpen = () => {
+        setIsEditModalOpen(true)
+    }
+
+    const handleEditModalClose = (name, color) => {
+        // Update the list information here
+        // You can perform any necessary actions with the updated information
+
+        const updatedList = { ...list, name: name, color: color }
+        changeList(updatedList).then(() => {
+            setIsEditModalOpen(false)
+            handleMove(true)
+        })
+    }
+
     return (
         <View style={[styles.container, shadows.mediumShadow]}>
             <BlurView
@@ -83,8 +109,26 @@ function List({ list, onListChange, changed }) {
                     },
                 ]}
             >
-                <View style={[styles.titler]}>
-                    <Text style={styles.text}>{list.name}</Text>
+                <View style={styles.over}>
+                    <View style={[styles.titler]}>
+                        <Text style={styles.text}>{list.name}</Text>
+                    </View>
+                    <View style={[styles.editAndDelete, shadows.mediumShadow]}>
+                        <View style={styles.button}>
+                            <Button
+                                style={styles.button}
+                                title="Delete List"
+                                onPress={handleDeleteList}
+                            />
+                        </View>
+                        <View style={styles.button}>
+                            <Button
+                                style={styles.button}
+                                title="Edit List"
+                                onPress={handleEditModalOpen}
+                            />
+                        </View>
+                    </View>
                 </View>
                 <ScrollView style={styles.carder}>
                     {cards.map((card) => (
@@ -118,6 +162,12 @@ function List({ list, onListChange, changed }) {
                         })
                         // log the name and description
                     }}
+                />
+                <EditListModal
+                    isOpen={isEditModalOpen}
+                    closeModal={() => setIsEditModalOpen(false)}
+                    onModalClose={handleEditModalClose}
+                    list={list}
                 />
             </BlurView>
         </View>
