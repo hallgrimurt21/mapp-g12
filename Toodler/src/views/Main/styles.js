@@ -6,12 +6,14 @@ export default StyleSheet.create({
         flexDirection: "column",
         alignItems: "center",
         flex: 1,
+        marginTop: "5%",
     },
     container: {
         backgroundColor: "transparent",
         height: deviceHeight,
         width: deviceWidth,
         flex: 1,
+        bounces: false,
     },
     title: {
         fontSize: 24,

@@ -19,9 +19,6 @@ const AddBoardModal = ({ isOpen, closeModal, onModalClose }) => {
     const buttonStyle = [styles.Button, shadows.smallShadow]
     const inputStyle = [styles.input, shadows.smallShadow]
     const handleClose = () => {
-        closeModal()
-    }
-    const handleCloseReturn = () => {
         onModalClose(name, description, photo)
         closeModal()
     }
@@ -54,7 +51,7 @@ const AddBoardModal = ({ isOpen, closeModal, onModalClose }) => {
                         placeholder="Photo(optional)"
                         placeholderTextColor={"grey"}
                     />
-                    <TouchableOpacity style={buttonStyle} activeOpacity={0.5} onPress= {handleCloseReturn}>
+                    <TouchableOpacity style={buttonStyle} activeOpacity={0.5} onPress= {handleClose}>
                         <Text>Save</Text>
                     </TouchableOpacity>
                 </View>

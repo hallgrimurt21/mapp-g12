@@ -5,12 +5,14 @@ import { Text, ScrollView, TouchableOpacity, ImageBackground, SafeAreaView, View
 import EditBoardModal from "../Modals/EditBoardModal"
 import AddBoardModal from "../Modals/AddBoardModal"
 import { getBoards, addBoard, changeBoard, deleteBoard } from "../../Functions/Manager"
+import { deviceHeight } from "../../styles/deviceWidth"
 
 const BoardList = () => {
     const { navigate } = useNavigation()
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
     const [editingBoard, setEditingBoard] = useState(null)
+    const [screenHeight, setScreenHeight] = useState(deviceHeight)
     const [boards, setBoards] = useState([])
     const [refresh, setRefresh] = useState(true)
 
@@ -18,6 +20,11 @@ const BoardList = () => {
         getBoards().then((boards) => {
             setBoards(boards)
             setRefresh(false)
+            if (boards.length > 3) {
+                setScreenHeight((deviceHeight * 0.25) * boards.length + 150)
+            } else {
+                setScreenHeight(deviceHeight)
+            }
         })
     }, [refresh])
 
@@ -47,11 +54,11 @@ const BoardList = () => {
     //     }
     // }
     return (
-        <ScrollView style={styles.container}>
+        <View style={[styles.container, { height: screenHeight }]}>
             {boards.map((board) => (
                 <TouchableOpacity
                     key={board.id}
-                    style={styles.itemWithBorder}
+                    style={styles.clickable}
                     onPress={() => {
                         navigate("Board", { id: board.id })
                     }}
@@ -64,8 +71,10 @@ const BoardList = () => {
                         source={{ uri: board.thumbnailPhoto }}
                         style={styles.image}
                     >
-                        <Text style={styles.text}>{board.name}</Text>
-                        {board.description && <Text style={styles.description}>{board.description}</Text>}
+                        <View style={styles.imageText}>
+                            <Text style={styles.text}>{board.name}</Text>
+                            {board.description && <Text style={styles.description}>{board.description}</Text>}
+                        </View>
                     </ImageBackground>
                 </TouchableOpacity>
             ))}
@@ -76,7 +85,7 @@ const BoardList = () => {
                     setIsAddModalOpen(true)
                 }}
             >
-                <Text style={styles.item}>+</Text>
+                <Text style={styles.add}>+</Text>
             </TouchableOpacity>
             <EditBoardModal />
             <EditBoardModal
@@ -107,7 +116,7 @@ const BoardList = () => {
                     })
                 }}
             />
-        </ScrollView>
+        </View>
     )
 }
 
