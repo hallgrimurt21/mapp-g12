@@ -17,7 +17,7 @@ import AddCardModal from "../Modals/AddCardModal"
 import Card from "../Card"
 import CardButton from "../CardButton"
 
-function List({ list }) {
+function List({ list, onDelete }) {
     if (
         Platform.OS === "android" &&
         UIManager.setLayoutAnimationEnabledExperimental
@@ -28,6 +28,9 @@ function List({ list }) {
     ///////// opening modal and setting cards /////////
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
     const [cards, setCards] = useState([])
+    const handleDeleteList = () => {
+        onDelete(list.id);
+      };
 
     //////// For adding a task ////////
     useEffect(() => {
@@ -73,6 +76,10 @@ function List({ list }) {
                 <View style={[styles.titler]}>
                     <Text style={styles.text}>{list.name}</Text>
                 </View>
+                <View style={[styles.container, shadows.mediumShadow]}>
+                {/* ... */}
+                 <Button title="Delete List" onPress={handleDeleteList} />
+                 </View>
                 <ScrollView style={styles.carder}>
                     {cards.map((card) => (
                         ////////// Card item as a button //////////
