@@ -9,13 +9,20 @@ import { deviceHeight } from "../../styles/deviceWidth"
 
 const BoardList = () => {
     const { navigate } = useNavigation()
+
+    /// Modal states ///
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
+
+    /// Board/s states  ///
     const [editingBoard, setEditingBoard] = useState(null)
-    const [screenHeight, setScreenHeight] = useState(deviceHeight)
     const [boards, setBoards] = useState([])
+
+    /// Screen states  ///
+    const [screenHeight, setScreenHeight] = useState(deviceHeight)
     const [refresh, setRefresh] = useState(true)
 
+    /// Get boards when screen refreshes///
     useEffect(() => {
         getBoards().then((boards) => {
             setBoards(boards)
@@ -28,6 +35,7 @@ const BoardList = () => {
         })
     }, [refresh])
 
+    /// Writing to storage functions ///
     function addBoardAndGetBoards(board) {
         addBoard(board).then(() => {
             setRefresh(true)
@@ -43,6 +51,7 @@ const BoardList = () => {
             setRefresh(true)
         })
     }
+
     return (
         <View style={[styles.container, { height: screenHeight }]}>
             {boards.map((board) => (
@@ -53,6 +62,7 @@ const BoardList = () => {
                         navigate("Board", { id: board.id })
                     }}
                     onLongPress={() => {
+                        /// Open Edit Board Modal ///
                         setIsEditModalOpen(true)
                         setEditingBoard(board)
                     }}
@@ -70,9 +80,10 @@ const BoardList = () => {
                 </TouchableOpacity>
             ))}
 
-            {/* "+" button at the end */}
+            {/* Add Board*/}
             <TouchableOpacity
                 onPress={() => {
+                    // Open Add Board Modal ///
                     setIsAddModalOpen(true)
                 }}
             >
@@ -83,6 +94,7 @@ const BoardList = () => {
                 closeModal={() => setIsEditModalOpen(false)}
                 board={editingBoard}
                 onModalClose={(name, description, photo, deleted) => {
+                    /// Edit or delete board ///
                     if (deleted) {
                         deleteBoardAndGetBoards(editingBoard.id)
                     } else {
@@ -99,6 +111,7 @@ const BoardList = () => {
                 isOpen={isAddModalOpen}
                 closeModal={() => setIsAddModalOpen(false)}
                 onModalClose={(name, description, photo) => {
+                    /// Adds new board ///
                     addBoardAndGetBoards({
                         name,
                         description,

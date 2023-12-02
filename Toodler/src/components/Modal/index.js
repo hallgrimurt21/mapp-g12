@@ -1,9 +1,9 @@
 import React from "react"
 import NativeModal from "react-native-modal"
-import { View, Text } from "react-native"
+import { View } from "react-native"
 import styles from "./styles"
 
-const Modal = ({ isOpen, closeModal, title, children }) => (
+const Modal = ({ isOpen, closeModal, children }) => (
     <NativeModal
         isVisible={isOpen}
         onBackButtonPress={closeModal}
@@ -15,7 +15,6 @@ const Modal = ({ isOpen, closeModal, title, children }) => (
         animationInTiming={830}
     >
         <View style={styles.body}>
-            <Text>{title}</Text>
             {children}
         </View>
         <View style={styles.empty}></View>
