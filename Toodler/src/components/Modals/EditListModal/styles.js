@@ -8,7 +8,7 @@ export default StyleSheet.create({
         marginBottom: 12,
         borderWidth: 1,
         textAlign: "left",
-        width: "100%",
+        width: Math.min(deviceWidth * 0.95, 400),
         padding: 10,
         borderRadius: 4,
     },
