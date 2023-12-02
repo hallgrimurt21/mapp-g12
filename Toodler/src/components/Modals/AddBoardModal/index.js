@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import {
     TextInput,
     SafeAreaView,
@@ -11,18 +11,21 @@ import styles from "./styles"
 import { shadows } from "../../../styles/shadows"
 
 const AddBoardModal = ({ isOpen, closeModal, onModalClose }) => {
-    const [name, onChangeName] = React.useState("")
-    const [description, onChangeDescription] = React.useState("")
-    const [photo, onChangePhoto] = React.useState("")
+    const initialState = { name: "", description: "", photo: "" }
+    const [form, setForm] = useState(initialState)
+
+    const handleChange = (field, value) => {
+        setForm(prevState => ({ ...prevState, [field]: value }))
+    }
     const titleStyle = [styles.title, shadows.smallShadow]
     const modalStyle = [styles.modal, shadows.smallShadow]
     const buttonStyle = [styles.Button, shadows.smallShadow]
     const inputStyle = [styles.input, shadows.smallShadow]
     const handleClose = () => {
-        onModalClose(name, description, photo)
+        onModalClose(form.name, form.description, form.photo)
         closeModal()
+        setForm(initialState)
     }
-
     return (
         <Modal isOpen={isOpen} closeModal={closeModal}>
             <SafeAreaView style={titleStyle}>
@@ -32,23 +35,23 @@ const AddBoardModal = ({ isOpen, closeModal, onModalClose }) => {
                 <View style={styles.insider}>
                     <TextInput
                         style={inputStyle}
-                        onChangeText={onChangeName}
-                        value={name}
+                        onChangeText={(text) => handleChange("name", text)}
+                        value={form.name}
                         placeholder="Name"
                         placeholderTextColor={"grey"}
                     />
                     <TextInput
                         style={inputStyle}
-                        onChangeText={onChangeDescription}
-                        value={description}
+                        onChangeText={(text) => handleChange("description", text)}
+                        value={form.description}
                         placeholder="Description(optional)"
                         placeholderTextColor={"grey"}
                     />
                     <TextInput
                         style={inputStyle}
-                        onChangeText={onChangePhoto}
-                        value={photo}
-                        placeholder="Photo(optional)"
+                        onChangeText={(text) => handleChange("photo", text)}
+                        value={form.photo}
+                        placeholder="Photo"
                         placeholderTextColor={"grey"}
                     />
                     <TouchableOpacity style={buttonStyle} activeOpacity={0.5} onPress= {handleClose}>

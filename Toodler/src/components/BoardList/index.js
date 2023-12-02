@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import styles from "./styles"
 import { useNavigation } from "@react-navigation/native"
-import { Text, ScrollView, TouchableOpacity, ImageBackground, SafeAreaView, View } from "react-native"
+import { Text, TouchableOpacity, ImageBackground, View } from "react-native"
 import EditBoardModal from "../Modals/EditBoardModal"
 import AddBoardModal from "../Modals/AddBoardModal"
 import { getBoards, addBoard, changeBoard, deleteBoard } from "../../Functions/Manager"
@@ -28,31 +28,21 @@ const BoardList = () => {
         })
     }, [refresh])
 
-    function addBoardAndGetBoards (board) {
+    function addBoardAndGetBoards(board) {
         addBoard(board).then(() => {
             setRefresh(true)
         })
     }
-    function editBoardAndGetBoards (board) {
+    function editBoardAndGetBoards(board) {
         changeBoard(board).then(() => {
             setRefresh(true)
         })
     }
-    function deleteBoardAndGetBoards (id) {
+    function deleteBoardAndGetBoards(id) {
         deleteBoard(id).then(() => {
             setRefresh(true)
         })
     }
-    // async function isImage (url) {
-    //     try {
-    //         const response = await fetch(url, { method: "HEAD" })
-    //         const contentType = response.headers.get("content-type")
-    //         return contentType && contentType.startsWith("image/")
-    //     } catch (error) {
-    //         console.error("Error checking image URL:", error)
-    //         return false
-    //     }
-    // }
     return (
         <View style={[styles.container, { height: screenHeight }]}>
             {boards.map((board) => (
@@ -69,6 +59,7 @@ const BoardList = () => {
                 >
                     <ImageBackground
                         source={{ uri: board.thumbnailPhoto }}
+                        defaultSource={require("../../resources/Images/Image_not_available.png")}
                         style={styles.image}
                     >
                         <View style={styles.imageText}>
@@ -87,7 +78,6 @@ const BoardList = () => {
             >
                 <Text style={styles.add}>+</Text>
             </TouchableOpacity>
-            <EditBoardModal />
             <EditBoardModal
                 isOpen={isEditModalOpen}
                 closeModal={() => setIsEditModalOpen(false)}
