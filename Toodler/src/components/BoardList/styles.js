@@ -1,8 +1,10 @@
 import { StyleSheet } from "react-native"
+import { deviceHeight } from "../../styles/deviceWidth"
 
 export default StyleSheet.create({
     container: {
-        flex: 1,
+        height: deviceHeight,
+        marginTop: "5%",
     },
     item: {
         textAlign: "center",

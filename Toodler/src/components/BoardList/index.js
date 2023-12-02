@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import styles from "./styles"
 import { useNavigation } from "@react-navigation/native"
-import { Text, ScrollView, TouchableOpacity, ImageBackground } from "react-native"
+import { Text, ScrollView, TouchableOpacity, ImageBackground, SafeAreaView, View } from "react-native"
 import EditBoardModal from "../Modals/EditBoardModal"
 import AddBoardModal from "../Modals/AddBoardModal"
 import { getBoards, addBoard, changeBoard, deleteBoard } from "../../Functions/Manager"
@@ -36,6 +36,16 @@ const BoardList = () => {
             setRefresh(true)
         })
     }
+    // async function isImage (url) {
+    //     try {
+    //         const response = await fetch(url, { method: "HEAD" })
+    //         const contentType = response.headers.get("content-type")
+    //         return contentType && contentType.startsWith("image/")
+    //     } catch (error) {
+    //         console.error("Error checking image URL:", error)
+    //         return false
+    //     }
+    // }
     return (
         <ScrollView style={styles.container}>
             {boards.map((board) => (
