@@ -71,7 +71,7 @@ const EditCardModal = ({ card, isOpen, closeModal, onModalClose }) => {
                     <TextInput
                         style={inputStyle}
                         onChangeText={setListId}
-                        placeholder={card.listId}
+                        placeholder={card.listId.toString()}
                         placeholderTextColor={grey}
                     />
                     <View style={styles.buttonPart}>
