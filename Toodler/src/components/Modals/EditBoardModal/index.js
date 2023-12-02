@@ -81,7 +81,7 @@ const EditBoardModal = ({ isOpen, closeModal, onModalClose, board }) => {
                     placeholder="Description(optional)"
                     placeholderTextColor={"grey"}
                     value={form.description}
-                />°
+                />
                 {/* Thumbnail Photo */}
                 <TextInput
                     style={inputStyle}
