@@ -16,7 +16,7 @@ import styles from "./styles"
 import AddCardModal from "../Modals/AddCardModal"
 import CardButton from "../CardButton"
 
-function List({ list }) {
+function List({ list, onListChange, changed }) {
     if (
         Platform.OS === "android" &&
         UIManager.setLayoutAnimationEnabledExperimental
@@ -39,7 +39,21 @@ function List({ list }) {
     const handleDelete = (id) => {
         setCards(cards.filter((card) => card.id !== id))
     }
-
+    const handleMove = (booler) => {
+        if (booler) {
+            getTasksByList(list.id).then((tasks) => {
+                setCards(tasks)
+                onListChange(true)
+            })
+        }
+    }
+    useEffect(() => {
+        if (changed) {
+            getTasksByList(list.id).then((tasks) => {
+                setCards(tasks)
+            })
+        }
+    }, [changed, list.id])
     ////////// add task to asyncStorage and get tasks from asyncStorage+update //////////
     function addTaskAndGetTasks(task) {
         addTask(task)
@@ -79,6 +93,7 @@ function List({ list }) {
                             key={card.id}
                             info={card}
                             onDelete={handleDelete} //////// Deleting a task ////////
+                            cardMoved={handleMove} //////// Moving a task ////////
                         />
                     ))}
 

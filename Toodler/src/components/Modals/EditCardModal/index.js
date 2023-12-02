@@ -15,6 +15,7 @@ const EditCardModal = ({ card, isOpen, closeModal, onModalClose }) => {
     const [name, onChangeName] = useState(card.name) // for name changing
     const [description, onChangeDescription] = useState(card.description) // for description changing
     const [deleted, setDeleted] = useState(false) ///// For DELETING a card /////
+    const [listId, setListId] = useState(card.listId) ///// For moving a card /////
 
     //////////// STYLES ////////////
     const titleStyle = [styles.title, shadows.smallShadow]
@@ -25,12 +26,12 @@ const EditCardModal = ({ card, isOpen, closeModal, onModalClose }) => {
     ///////// For returning info on deleting / editing info /////////
     const handleClose = () => {
         if (name === "") {
-            onModalClose(name, description, deleted)
+            onModalClose(card.name, card.description, deleted, card.listId)
             onChangeName("")
             onChangeDescription("")
             closeModal()
         } else {
-            onModalClose(name, description, deleted)
+            onModalClose(name, description, deleted, listId)
             closeModal()
             onChangeName("") // clear the name input
             onChangeDescription("") // clear the description input
@@ -65,6 +66,12 @@ const EditCardModal = ({ card, isOpen, closeModal, onModalClose }) => {
                                 ? card.description
                                 : "Description (optional)"
                         }
+                        placeholderTextColor={grey}
+                    />
+                    <TextInput
+                        style={inputStyle}
+                        onChangeText={setListId}
+                        placeholder={card.listId}
                         placeholderTextColor={grey}
                     />
                     <View style={styles.buttonPart}>

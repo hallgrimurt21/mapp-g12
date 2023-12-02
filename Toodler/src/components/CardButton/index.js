@@ -1,10 +1,16 @@
 import React, { useState, useEffect, useRef } from "react"
 import Card from "../Card"
 import { Pressable } from "react-native"
-import { changeTask, get1Task, deleteTask } from "../../Functions/Manager"
+import {
+    changeTask,
+    get1Task,
+    deleteTask,
+    getListsByBoard,
+    get1List,
+} from "../../Functions/Manager"
 import EditCardModal from "../Modals/EditCardModal"
 
-function CardButton({ info, onDelete }) {
+function CardButton({ info, onDelete, cardMoved }) {
     const [cardInfo, setCardInfo] = useState(info)
     const [modalVisible, setModalVisible] = useState(false)
 
@@ -29,7 +35,7 @@ function CardButton({ info, onDelete }) {
     }
 
     ///////// For closing + updating / Deleting a card /////////
-    const closeModal = (name, description, deleted) => {
+    const closeModal = (name, description, deleted, listId) => {
         /////// Deleting a card ///////
         if (deleted == true) {
             deleteTask(cardInfo.id).then(() => {
@@ -48,8 +54,24 @@ function CardButton({ info, onDelete }) {
                 })
                 setCardInfo(updatedInfo)
             })
+            if (listId !== cardInfo.listId) {
+                get1List(listId).then((list) => {
+                    getListsByBoard(list.boardId).then((lists) => {
+                        if (lists.some((list) => list.id == listId)) {
+                            get1Task(cardInfo.id).then((task) => {
+                                task.listId = parseInt(listId, 10)
+                                changeTask(task).then(() => {
+                                    console.log("Card moved")
+                                    cardMoved(true)
+                                })
+                            })
+                        } else {
+                            console.log("List does not exist")
+                        }
+                    })
+                })
+            }
         }
-
         setModalVisible(false)
     }
 

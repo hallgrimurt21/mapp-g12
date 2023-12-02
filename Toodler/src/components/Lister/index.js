@@ -9,6 +9,7 @@ import AddListModal from "../Modals/AddListModal" // Import the AddListModal com
 function Lister({ board }) {
     const [lists, setLists] = useState([])
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
+    const [changed, setChanged] = useState(false)
 
     useEffect(() => {
         getListsByBoard(board.id)
@@ -37,6 +38,27 @@ function Lister({ board }) {
             })
     }
 
+    /////////// calling useEffect for moving card /////////////
+    function handleChange(booler) {
+        if (booler === true) {
+            setChanged(true)
+        }
+    }
+
+    ///////////// For card being moved /////////////
+    useEffect(() => {
+        if (changed) {
+            getListsByBoard(board.id)
+                .then((lists) => {
+                    setLists(lists)
+                    setChanged(false) // Reset the changed state
+                })
+                .catch((error) => {
+                    console.error("Error getting lists: ", error)
+                })
+        }
+    }, [changed, board.id])
+
     return (
         <>
             <ScrollView style={styles.lister} horizontal={true} pagingEnabled>
@@ -44,7 +66,9 @@ function Lister({ board }) {
                     <List
                         key={list.id}
                         list={list}
+                        onListChange={handleChange}
                         style={shadows.mediumShadow}
+                        changed={changed}
                     />
                 ))}
             </ScrollView>
@@ -75,4 +99,3 @@ function Lister({ board }) {
 }
 
 export default Lister
-
