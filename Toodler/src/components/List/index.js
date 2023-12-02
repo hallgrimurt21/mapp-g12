@@ -34,6 +34,10 @@ function List({ list }) {
         })
     }, [list.id])
 
+    const handleDelete = (id) => {
+        setCards(cards.filter((card) => card.id !== id))
+    }
+
     function addTaskAndGetTasks(task) {
         addTask(task)
             .then(() => {
@@ -67,7 +71,11 @@ function List({ list }) {
                 </View>
                 <ScrollView style={styles.carder}>
                     {cards.map((card) => (
-                        <CardButton key={card.id} info={card} />
+                        <CardButton
+                            key={card.id}
+                            info={card}
+                            onDelete={handleDelete}
+                        />
                     ))}
 
                     <View style={styles.adder}>
