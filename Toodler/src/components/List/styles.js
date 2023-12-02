@@ -46,6 +46,8 @@ const styles = StyleSheet.create({
     },
     editAndDelete: {
         //I want this to be at the top right corner of the container in line with the titler
+        backgroundColor: white,
+        borderBottomLeftRadius: 5,
         alignSelf: "flex-end",
         flexDirection: "row",
         justifyContent: "space-between",
