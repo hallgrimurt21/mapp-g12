@@ -54,13 +54,22 @@ const EditCardModal = ({ card, isOpen, closeModal, onModalClose }) => {
                         }
                         placeholderTextColor={grey}
                     />
-                    <TouchableOpacity
-                        style={buttonStyle}
-                        activeOpacity={0.5}
-                        onPress={handleClose}
-                    >
-                        <Text>Save</Text>
-                    </TouchableOpacity>
+                    <View style={styles.buttonPart}>
+                        <TouchableOpacity
+                            style={buttonStyle}
+                            activeOpacity={0.5}
+                            onPress={handleClose}
+                        >
+                            <Text>Save</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.deleteButton}
+                            activeOpacity={0.5}
+                            onPress={handleClose}
+                        >
+                            <Text style={styles.deleteText}>Delete</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </SafeAreaView>
         </Modal>
