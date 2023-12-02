@@ -8,10 +8,18 @@ const EditBoardModal = ({ isOpen, closeModal, onModalClose, board }) => {
     const initialState = { name: "", description: "", photo: "" }
     const [form, setForm] = useState(initialState)
     const [deleted, setDeleted] = useState(false)
+    const [error, setError] = useState("")
     const titleStyle = [styles.title, shadows.smallShadow]
     const modalStyle = [styles.modal, shadows.smallShadow]
     const buttonStyle = [styles.Button, shadows.smallShadow]
     const inputStyle = [styles.input, shadows.smallShadow]
+    const loadBoard = () => {
+        setForm({
+            name: board.name,
+            description: board.description || "",
+            photo: board.thumbnailPhoto,
+        })
+    }
     useEffect(() => {
         if (deleted) {
             handleCloseReturn()
@@ -19,11 +27,7 @@ const EditBoardModal = ({ isOpen, closeModal, onModalClose, board }) => {
     }, [deleted])
     useEffect(() => {
         if (board) {
-            setForm({
-                name: board.name,
-                description: board.description || "",
-                photo: board.thumbnailPhoto,
-            })
+            loadBoard()
         }
     }, [board])
     const handleChange = (field, value) => {
@@ -31,13 +35,23 @@ const EditBoardModal = ({ isOpen, closeModal, onModalClose, board }) => {
     }
 
     const handleCloseReturn = () => {
+        if (!form.name.trim() || !form.photo.trim()) {
+            setError("Fill in name and photo")
+            return
+        }
         onModalClose(form.name, form.description, form.photo, deleted)
         closeModal()
         setForm(initialState)
         setDeleted(false)
+        setError("")
+    }
+    const handleClose = () => {
+        closeModal()
+        loadBoard()
+        setError("")
     }
     return (
-        <Modal isOpen={isOpen} closeModal={closeModal}>
+        <Modal isOpen={isOpen} closeModal={handleClose}>
             <SafeAreaView style={titleStyle}>
                 <Text style={styles.titleText}>Edit Board</Text>
             </SafeAreaView>
@@ -75,6 +89,7 @@ const EditBoardModal = ({ isOpen, closeModal, onModalClose, board }) => {
                     }}>
                     <Text>Delete</Text>
                 </TouchableOpacity>
+                {error && <Text style={{ color: "red" }}>{error}</Text>}
             </SafeAreaView>
         </Modal>
     )
