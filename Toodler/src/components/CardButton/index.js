@@ -13,10 +13,12 @@ function CardButton({ info, onDelete }) {
     const [cardInfo, setCardInfo] = useState(info)
     const [modalVisible, setModalVisible] = useState(false)
 
+    ////// updating card info on change ///////
     useEffect(() => {
         setCardInfo(info)
     }, [info])
 
+    ///////// For on press checking
     const handlePress = () => {
         const updatedInfo = { ...cardInfo, isFinished: !cardInfo.isFinished }
         changeTask(updatedInfo).then(() => {
@@ -26,15 +28,19 @@ function CardButton({ info, onDelete }) {
             setCardInfo(updatedInfo)
         })
     }
+    //////// For on long press editing
     const handleLongPress = () => {
         setModalVisible(true)
     }
 
+    ///////// For closing + updating / Deleting a card /////////
     const closeModal = (name, description, deleted) => {
+        /////// Deleting a card ///////
         if (deleted == true) {
             deleteTask(cardInfo.id).then(() => {
                 onDelete(info.id)
             })
+            /////// Updating a card ///////
         } else {
             const updatedInfo = {
                 ...cardInfo,

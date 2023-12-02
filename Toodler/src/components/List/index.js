@@ -25,19 +25,23 @@ function List({ list }) {
         UIManager.setLayoutAnimationEnabledExperimental(true)
     }
 
+    ///////// opening modal and setting cards /////////
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
     const [cards, setCards] = useState([])
 
+    //////// For adding a task ////////
     useEffect(() => {
         getTasksByList(list.id).then((tasks) => {
             setCards(tasks)
         })
     }, [list.id])
 
+    ///// Deleting a task /////
     const handleDelete = (id) => {
         setCards(cards.filter((card) => card.id !== id))
     }
 
+    ////////// add task to asyncStorage and get tasks from asyncStorage+update //////////
     function addTaskAndGetTasks(task) {
         addTask(task)
             .then(() => {
@@ -71,10 +75,11 @@ function List({ list }) {
                 </View>
                 <ScrollView style={styles.carder}>
                     {cards.map((card) => (
+                        ////////// Card item as a button //////////
                         <CardButton
                             key={card.id}
                             info={card}
-                            onDelete={handleDelete}
+                            onDelete={handleDelete} //////// Deleting a task ////////
                         />
                     ))}
 
