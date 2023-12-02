@@ -46,13 +46,18 @@ const styles = StyleSheet.create({
     },
     editAndDelete: {
         //I want this to be at the top right corner of the container in line with the titler
-        alignSelf: "flex-end" ,
-        flexDirection: "column",
+        alignSelf: "flex-end",
+        flexDirection: "row",
         justifyContent: "space-between",
-        flexWrap : "wrap",
-
-
-       
+        flexWrap: "wrap",
+    },
+    button: {
+        marginRight: 5,
+    },
+    over: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        flexWrap: "wrap",
     },
 })
 
