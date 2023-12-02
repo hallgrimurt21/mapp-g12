@@ -70,4 +70,29 @@ export default StyleSheet.create({
         padding: 20,
         width: "100%",
     },
+    deleteButton: {
+        width: Math.min(deviceWidth * 0.5, 150),
+        height: 40,
+        borderWidth: 1,
+        borderRadius: 4,
+        borderColor: "red",
+        alignSelf: "flex-start",
+        textAlign: "center",
+        justifyContent: "center",
+        alignItems: "center",
+        shadowColor: "black",
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
+        shadowOffset: {
+            width: 0, // These can't both be 0
+            height: 1, // i.e. the shadow has to be offset in some way
+        },
+    },
+    deleteText: {
+        color: "red",
+    },
+    buttonPart: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+    },
 })

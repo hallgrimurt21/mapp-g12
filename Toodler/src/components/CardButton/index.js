@@ -1,10 +1,15 @@
 import React, { useState, useEffect, useRef } from "react"
 import Card from "../Card"
 import { View, Text, Animated, Pressable } from "react-native"
-import { changeTask, get1Task } from "../../Functions/Manager"
+import {
+    changeTask,
+    get1Task,
+    deleteTask,
+    getTasks,
+} from "../../Functions/Manager"
 import EditCardModal from "../Modals/EditCardModal"
 
-function CardButton({ info }) {
+function CardButton({ info, onDelete }) {
     const [cardInfo, setCardInfo] = useState(info)
     const [modalVisible, setModalVisible] = useState(false)
 
@@ -25,18 +30,24 @@ function CardButton({ info }) {
         setModalVisible(true)
     }
 
-    const closeModal = (name, description) => {
-        const updatedInfo = {
-            ...cardInfo,
-            name: name,
-            description: description,
-        }
-        changeTask(updatedInfo).then(() => {
-            get1Task(updatedInfo.id).then((task) => {
-                console.log(task)
+    const closeModal = (name, description, deleted) => {
+        if (deleted == true) {
+            deleteTask(cardInfo.id).then(() => {
+                onDelete(info.id)
             })
-            setCardInfo(updatedInfo)
-        })
+        } else {
+            const updatedInfo = {
+                ...cardInfo,
+                name: name,
+                description: description,
+            }
+            changeTask(updatedInfo).then(() => {
+                get1Task(updatedInfo.id).then((task) => {
+                    console.log(task)
+                })
+                setCardInfo(updatedInfo)
+            })
+        }
 
         setModalVisible(false)
     }

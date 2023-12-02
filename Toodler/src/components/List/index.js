@@ -80,14 +80,8 @@ function List({ list, board, editListAndGetLists, deleteListAndGetLists }) {
         })
     }, [list.id])
 
-    const handlePress = () => {
-        const updatedInfo = { ...listInfo, isFinished: !list.isFinished }
-        changeList(updatedInfo).then(() => {
-            get1List(updatedInfo.id).then((list) => {
-                console.log(list)
-            })
-            setListInfo(updatedInfo)
-        })
+    const handleDelete = (id) => {
+        setCards(cards.filter((card) => card.id !== id))
     }
 
     function addTaskAndGetTasks(task) {
@@ -133,7 +127,11 @@ function List({ list, board, editListAndGetLists, deleteListAndGetLists }) {
                 </View>
                 <ScrollView style={styles.carder}>
                     {cards.map((card) => (
-                        <CardButton key={card.id} info={card} />
+                        <CardButton
+                            key={card.id}
+                            info={card}
+                            onDelete={handleDelete}
+                        />
                     ))}
 
                     <View style={styles.adder}>
