@@ -10,12 +10,15 @@ import Modal from "../../Modal"
 import styles from "./styles"
 import { grey } from "../../../styles/colors"
 import { shadows } from "../../../styles/shadows"
+import { Picker } from "@react-native-picker/picker"
+import { getNeighbourLists } from "../../../Functions/Manager"
 
 const EditCardModal = ({ card, isOpen, closeModal, onModalClose }) => {
     const [name, onChangeName] = useState(card.name) // for name changing
     const [description, onChangeDescription] = useState(card.description) // for description changing
     const [deleted, setDeleted] = useState(false) ///// For DELETING a card /////
     const [listId, setListId] = useState(card.listId) ///// For moving a card /////
+    const [neighbourLists, setNeighbourLists] = useState([])
 
     //////////// STYLES ////////////
     const titleStyle = [styles.title, shadows.smallShadow]
@@ -45,6 +48,12 @@ const EditCardModal = ({ card, isOpen, closeModal, onModalClose }) => {
         }
     }, [deleted])
 
+    useEffect(() => {
+        console.log(card.listId)
+        getNeighbourLists(card.listId).then((neighbourLists) => {
+            setNeighbourLists(neighbourLists)
+        })
+    }, [card])
     return (
         <Modal isOpen={isOpen} closeModal={handleClose}>
             <SafeAreaView style={titleStyle}>
@@ -68,12 +77,19 @@ const EditCardModal = ({ card, isOpen, closeModal, onModalClose }) => {
                         }
                         placeholderTextColor={grey}
                     />
-                    <TextInput
-                        style={inputStyle}
-                        onChangeText={setListId}
-                        placeholder={card.listId.toString()}
-                        placeholderTextColor={grey}
-                    />
+                    <Picker
+                        selectedValue={listId}
+                        onValueChange={(itemValue) => setListId(itemValue)}
+                    >
+                        {neighbourLists.map((list) => (
+                            <Picker.Item
+                                key={list.id}
+                                label={list.name}
+                                value={list.id}
+                            />
+                        ))}
+                    </Picker>
+
                     <View style={styles.buttonPart}>
                         <TouchableOpacity
                             style={buttonStyle}

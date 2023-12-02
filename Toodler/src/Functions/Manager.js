@@ -82,3 +82,10 @@ export const get1Board = async (key) => {
     const board = await get1X("boards", key)
     return board
 }
+
+export const getNeighbourLists = async (listId) => {
+    const list = await get1List(listId)
+    const board = await get1Board(list.boardId)
+    const lists = await getListsByBoard(board.id)
+    return lists
+}
