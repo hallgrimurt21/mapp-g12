@@ -28,6 +28,7 @@ function Lister({ board }) {
                 getListsByBoard(board.id)
                     .then((lists) => {
                         setLists(lists)
+                        console.log(lists)
                     })
                     .catch((error) => {
                         console.error("Error getting lists: ", error)
@@ -36,6 +37,7 @@ function Lister({ board }) {
             .catch((error) => {
                 console.error("Error adding list: ", error)
             })
+        setChanged(true)
     }
 
     /////////// calling useEffect for moving card /////////////

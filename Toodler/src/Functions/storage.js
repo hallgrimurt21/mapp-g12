@@ -7,6 +7,18 @@ export const storeData = async (data) => {
     }
 }
 
+export const setCounters = async (counters) => {
+    const tasks = await getX("tasks")
+    const lists = await getX("lists")
+    const boards = await getX("boards")
+    const maxTaskId = Math.max(...tasks.map((task) => task.id), 0)
+    const maxListId = Math.max(...lists.map((list) => list.id), 0)
+    const maxBoardId = Math.max(...boards.map((board) => board.id), 0)
+    AsyncStorage.setItem("maxTaskId", JSON.stringify(maxTaskId))
+    AsyncStorage.setItem("maxListId", JSON.stringify(maxListId))
+    AsyncStorage.setItem("maxBoardId", JSON.stringify(maxBoardId))
+}
+
 export const getX = async (varb) => {
     const stringer = await AsyncStorage.getItem(varb)
     const items = JSON.parse(stringer)
@@ -24,8 +36,8 @@ export const changeX = async (varb, key, value) => {
 export const addX = async (varb, value) => {
     const items = await getX(varb)
     ///////////////////add id to value
-    const maxId = Math.max(...items.map((item) => item.id), 0)
-    value.id = maxId + 1
+    // const maxId = Math.max(...items.map((item) => item.id), 0)
+    // value.id = maxId + 1
     items.push(value)
     await AsyncStorage.setItem(varb, JSON.stringify(items))
 }

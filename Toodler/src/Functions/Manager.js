@@ -1,5 +1,6 @@
 import React from "react"
 import { getX, changeX, get1X, addX, deleteX } from "./storage"
+import AsyncStorage from "@react-native-async-storage/async-storage"
 
 /////////////////////TASKS////////////////////////
 export const getTasks = async () => {
@@ -9,6 +10,9 @@ export const getTasks = async () => {
 
 export const addTask = async (task) => {
     task.isFinished = false
+    let counters = await getX("maxTaskId")
+    task.id = counters + 1
+    await AsyncStorage.setItem("maxTaskId", JSON.stringify(task.id))
     await addX("tasks", task)
 }
 
@@ -38,6 +42,10 @@ export const getLists = async () => {
 }
 
 export const addList = async (list) => {
+    let counters = await getX("maxListId")
+    list.id = counters + 1
+    await AsyncStorage.setItem("maxListId", JSON.stringify(list.id))
+
     await addX("lists", list)
 }
 
@@ -67,6 +75,10 @@ export const getBoards = async () => {
 }
 
 export const addBoard = async (board) => {
+    let counters = await getX("maxBoardId")
+    board.id = counters + 1
+    await AsyncStorage.setItem("maxBoardId", JSON.stringify(board.id))
+
     await addX("boards", board)
 }
 
