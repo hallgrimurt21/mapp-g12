@@ -114,7 +114,7 @@ function List({ list, onListChange, changed, onDelete }) {
                 <View style={[styles.titler]}>
                     <Text style={styles.text}>{list.name}</Text>
                 </View>
-                <View style={[styles.container, shadows.mediumShadow]}>
+                <View style={[styles.editAndDelete, shadows.mediumShadow]}>
                 <Button title="Delete List" onPress={handleDeleteList} />
                 <Button title="Edit List" onPress={handleEditModalOpen} />
                 </View>

@@ -26,7 +26,7 @@ const EditListModal = ({ isOpen, closeModal, onModalClose, list }) => {
         <TextInput
           style={styles.input}
           onChangeText={setName}
-          placeholder="List Name"
+          placeholder={list.name}
           placeholderTextColor={colors.grey}
           value={name}
         />
