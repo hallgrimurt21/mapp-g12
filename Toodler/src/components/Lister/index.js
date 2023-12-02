@@ -11,6 +11,11 @@ function Lister({ board }) {
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
     const [changed, setChanged] = useState(false)
 
+    const handleDeleteList = (listId) => {
+        setLists(lists.filter((list) => list.id !== listId));
+      };
+
+
     useEffect(() => {
         getListsByBoard(board.id)
             .then((lists) => {
@@ -68,6 +73,7 @@ function Lister({ board }) {
                     <List
                         key={list.id}
                         list={list}
+                        onDelete={handleDeleteList}
                         onListChange={handleChange}
                         style={shadows.mediumShadow}
                         changed={changed}

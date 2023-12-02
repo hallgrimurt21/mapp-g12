@@ -1,59 +1,54 @@
 import React, { useEffect, useState } from "react"
 import styles from "./styles"
 import { useNavigation } from "@react-navigation/native"
-import { Text, ScrollView, TouchableOpacity } from "react-native"
+import { Text, TouchableOpacity, ImageBackground, View } from "react-native"
 import EditBoardModal from "../Modals/EditBoardModal"
 import AddBoardModal from "../Modals/AddBoardModal"
 import { getBoards, addBoard, changeBoard, deleteBoard } from "../../Functions/Manager"
-
+import { deviceHeight } from "../../styles/deviceWidth"
 
 const BoardList = () => {
     const { navigate } = useNavigation()
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
     const [editingBoard, setEditingBoard] = useState(null)
+    const [screenHeight, setScreenHeight] = useState(deviceHeight)
     const [boards, setBoards] = useState([])
-    const [first, setFirst] = useState(true)
-
+    const [refresh, setRefresh] = useState(true)
 
     useEffect(() => {
         getBoards().then((boards) => {
             setBoards(boards)
-            setFirst(false)
+            setRefresh(false)
+            if (boards.length > 3) {
+                setScreenHeight((deviceHeight * 0.25) * boards.length + 150)
+            } else {
+                setScreenHeight(deviceHeight)
+            }
         })
-    },[first])
+    }, [refresh])
 
-    function addBoardAndGetBoards (board) {
-        console.log("addBoardAndGetBoards is called")
+    function addBoardAndGetBoards(board) {
         addBoard(board).then(() => {
-            getBoards().then((boards) => {
-                setBoards(boards)
-            })
+            setRefresh(true)
         })
     }
-    function editBoardAndGetBoards (board) {
-        console.log("editBoardAndGetBoards is called")
+    function editBoardAndGetBoards(board) {
         changeBoard(board).then(() => {
-            getBoards().then((boards) => {
-                setBoards(boards)
-            })
+            setRefresh(true)
         })
     }
-    function deleteBoardAndGetBoards (id) {
-        console.log("editBoardAndGetBoards is called")
+    function deleteBoardAndGetBoards(id) {
         deleteBoard(id).then(() => {
-            getBoards().then((boards) => {
-                setBoards(boards)
-            })
+            setRefresh(true)
         })
     }
     return (
-        <ScrollView style={styles.container}>
-            {/* list of boards */}
+        <View style={[styles.container, { height: screenHeight }]}>
             {boards.map((board) => (
                 <TouchableOpacity
                     key={board.id}
-                    style={styles.itemWithBorder}
+                    style={styles.clickable}
                     onPress={() => {
                         navigate("Board", { id: board.id })
                     }}
@@ -62,7 +57,16 @@ const BoardList = () => {
                         setEditingBoard(board)
                     }}
                 >
-                    <Text style={styles.item}>{board.name}</Text>
+                    <ImageBackground
+                        source={{ uri: board.thumbnailPhoto }}
+                        defaultSource={require("../../resources/Images/Image_not_available.png")}
+                        style={styles.image}
+                    >
+                        <View style={styles.imageText}>
+                            <Text style={styles.text}>{board.name}</Text>
+                            {board.description && <Text style={styles.description}>{board.description}</Text>}
+                        </View>
+                    </ImageBackground>
                 </TouchableOpacity>
             ))}
 
@@ -72,7 +76,7 @@ const BoardList = () => {
                     setIsAddModalOpen(true)
                 }}
             >
-                <Text style={styles.item}>+</Text>
+                <Text style={styles.add}>+</Text>
             </TouchableOpacity>
             <EditBoardModal
                 isOpen={isEditModalOpen}
@@ -102,7 +106,7 @@ const BoardList = () => {
                     })
                 }}
             />
-        </ScrollView>
+        </View>
     )
 }
 

@@ -1,23 +1,19 @@
 import React from "react"
 import {
-    View,
-    TouchableOpacity,
+    SafeAreaView,
+    ScrollView,
     Text,
-    StyleSheet,
-    Dimensions,
+    View,
 } from "react-native"
-import BoardSelect from "../../components/BoardSelect"
-import { navajo, smoke } from "../../styles/colors"
-import { deviceWidth } from "../../styles/deviceWidth"
-import { Image } from "expo-image"
 import styles from "./styles"
 import BoardList from "../../components/BoardList"
-import data from "../../resources/data.json"
 
 const Main = ({ navigation: { navigate } }) => (
-    <View style={styles.container}>
+    <View style={styles.main}>
         <Text style={styles.title}>Boards</Text>
-        <BoardList />
+        <ScrollView style={styles.container}>
+            <BoardList />
+        </ScrollView>
     </View>
 )
 
