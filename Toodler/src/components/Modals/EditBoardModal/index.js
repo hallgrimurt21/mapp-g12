@@ -35,7 +35,7 @@ const EditBoardModal = ({ isOpen, closeModal, onModalClose, board }) => {
     }
 
     const handleCloseReturn = () => {
-        if (!form.name.trim() || !form.photo.trim()) {
+        if ((!form.name.trim() || !form.photo.trim()) && !deleted) {
             setError("Fill in name and photo")
             return
         }
